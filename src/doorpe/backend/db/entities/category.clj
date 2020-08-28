@@ -1,8 +1,10 @@
 (ns doorpe.backend.db.entities.category
   (:import [org.bson.types ObjectId]))
 
-(def categories-vec [{:_id (ObjectId.)
-                      :category-name "Appliances Repair"
+(def entity-name "category")
+
+(def entity-vec [{:_id (ObjectId.)
+                      :category-name "Home Appliances/Hardware Repair"
                       :desc "Get Experts and background verified professional at home for service like AC Repair, Oven ... "}
                      {:_id (ObjectId.)
                       :category-name "Cleaning & Disinfection"

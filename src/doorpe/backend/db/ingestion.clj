@@ -2,12 +2,12 @@
   (:require [monger.collection :as mc]
             [doorpe.backend.db.db :as db]))
 
-(def ^:private db-ref (db/get-db-ref ))
+(def ^:private db-ref (db/get-db-ref))
 
-(defn  category
-  [doc]
-  (mc/insert db-ref "category" doc))
+(defn doc
+  [coll doc]
+  (mc/insert db-ref coll doc))
 
-(defn category-batch
-  [docs]
-  (mc/insert-batch db-ref "category" docs))
+(defn docs
+  [coll docs]
+  (mc/insert-batch db-ref coll docs))
