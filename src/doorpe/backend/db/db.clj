@@ -9,7 +9,7 @@
 (def ^:private password "root")
 (def ^:private uri (str "mongodb://" host ":" port "/" db-name ))
 
-(defn get-conn
+(defn ^:private get-conn
   []
   (mg/connect {:host host
                :port port}))

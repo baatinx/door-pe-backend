@@ -1,52 +1,53 @@
 (ns doorpe.backend.db.entities.bookings
-  (:import [org.bson.types ObjectId]))
+  (:require [doorpe.backend.util :refer [bson-object-id]]))
+
 
 (def entity-name "bookings")
 
-(def entity-vec [{:pending [{:_id (ObjectId.)
-                             :u-id (ObjectId. "5f48ab6b799d90710eaea363")
-                             :p-id (ObjectId. "5f48ab6b799d90710eaea366")
-                             :s-id (ObjectId. "5f48ab6b799d90710eaea366")
+(def entity-vec [{:pending [{:_id (bson-object-id)
+                             :customer-id (bson-object-id "5f48ab6b799d90710eaea363")
+                             :provider-id (bson-object-id "5f48ab6b799d90710eaea366")
+                             :service-id (bson-object-id "5f48ab6b799d90710eaea366")
                              :booking-on "date"
                              :service-on "date"
                              :service-time "time"}
-                            {:_id (ObjectId.)
-                             :u-id (ObjectId. "5f48ab6b799d90710eaea363")
-                             :p-id (ObjectId. "5f48ab6b799d90710eaea366")
-                             :s-id (ObjectId. "5f48ab6b799d90710eaea366")
+                            {:_id (bson-object-id)
+                             :customer-id (bson-object-id "5f48ab6b799d90710eaea363")
+                             :provider-id (bson-object-id "5f48ab6b799d90710eaea366")
+                             :service-id (bson-object-id "5f48ab6b799d90710eaea366")
                              :booking-on "date"
                              :service-on "date"
                              :service-time "time"}]
-                  :accepted [{:_id (ObjectId.)
-                              :u-id (ObjectId. "5f48ab6b799d90710eaea363")
-                              :p-id (ObjectId. "5f48ab6b799d90710eaea366")
-                              :s-id (ObjectId. "5f48ab6b799d90710eaea366")
+                  :accepted [{:_id (bson-object-id)
+                              :customer-id (bson-object-id "5f48ab6b799d90710eaea363")
+                              :provider-id (bson-object-id "5f48ab6b799d90710eaea366")
+                              :service-id (bson-object-id "5f48ab6b799d90710eaea366")
                               :booking-on "date"
                               :service-on "date"
                               :service-time "time"}]
-                  :canceled [{:_id (ObjectId.)
-                              :u-id (ObjectId. "5f48ab6b799d90710eaea363")
-                              :p-id (ObjectId. "5f48ab6b799d90710eaea366")
-                              :s-id (ObjectId. "5f48ab6b799d90710eaea366")
+                  :canceled [{:_id (bson-object-id)
+                              :customer-id (bson-object-id "5f48ab6b799d90710eaea363")
+                              :provider-id (bson-object-id "5f48ab6b799d90710eaea366")
+                              :service-id (bson-object-id "5f48ab6b799d90710eaea366")
                               :booking-on "date"
                               :service-on "date"
                               :service-time "time"
                               :cancelation-date "date"
                               :cancelation-reason "......"}]
-                  :rejected [{:_id (ObjectId.)
-                              :u-id (ObjectId. "5f48ab6b799d90710eaea363")
-                              :p-id (ObjectId. "5f48ab6b799d90710eaea366")
-                              :s-id (ObjectId. "5f48ab6b799d90710eaea366")
+                  :rejected [{:_id (bson-object-id)
+                              :customer-id (bson-object-id "5f48ab6b799d90710eaea363")
+                              :provider-id (bson-object-id "5f48ab6b799d90710eaea366")
+                              :service-id (bson-object-id "5f48ab6b799d90710eaea366")
                               :booking-on "date"
                               :service-on "date"
                               :service-time "time"
                               :cancelation-date "date"
                               :cancelation-reason "......"}]
-                  :fulfilled [{:_id (ObjectId.)
-                               :u-id (ObjectId. "5f48ab6b799d90710eaea363")
-                               :p-id (ObjectId. "5f48ab6b799d90710eaea366")
-                               :s-id (ObjectId. "5f48ab6b799d90710eaea366")
+                  :fulfilled [{:_id (bson-object-id)
+                               :customer-id (bson-object-id "5f48ab6b799d90710eaea363")
+                               :provider-id (bson-object-id "5f48ab6b799d90710eaea366")
+                               :service-id (bson-object-id "5f48ab6b799d90710eaea366")
                                :booking-on "date"
                                :service-on "date"
                                :service-time "time"
-                               :review-id (ObjectId. "5f48ab6b799d90710eaea366")}]}])
+                               :review-id (bson-object-id "5f48ab6b799d90710eaea366")}]}])
