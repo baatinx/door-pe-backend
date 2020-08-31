@@ -3,13 +3,19 @@
   (:import [org.bson.types ObjectId]))
 
 (defn bson-object-id
-  ([] (ObjectId.))
-  ([hexa-string] (ObjectId. hexa-string)))
+  ([]
+   (ObjectId.))
+
+  ([hexa-string]
+   (ObjectId. hexa-string)))
 
 (defn bson-object-id->str
-  ([] (-> (ObjectId.)
+  ([]
+   (-> (ObjectId.)
           .toString))
-  ([object-id] (.toString object-id)))
+
+  ([object-id]
+   (.toString object-id)))
 
 (defn exists?
   [db coll]

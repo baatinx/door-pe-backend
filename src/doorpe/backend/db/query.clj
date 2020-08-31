@@ -1,7 +1,7 @@
 (ns doorpe.backend.db.query
   (:require [monger.collection :as mc]
             [doorpe.backend.db.db :refer [get-db-ref]]
-            [doorpe.backend.util :refer [bson-object-id exists?]]))
+            [doorpe.backend.util :refer [exists?]]))
 
 (def ^:private db (get-db-ref ))
 

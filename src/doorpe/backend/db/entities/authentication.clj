@@ -1,7 +1,7 @@
-(ns doorpe.backend.db.entities.auth
+(ns doorpe.backend.db.entities.authentication
   (:require [doorpe.backend.util :refer [bson-object-id]]))
 
-(def entity-name "auth")
+(def entity-name "authentication")
 
 (def entity-vec [{:_id (bson-object-id )
                   :username 7006787878

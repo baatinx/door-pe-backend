@@ -11,7 +11,7 @@
 
 (defn -main
   [& args]
-  ;;(run app)
-  (run-migrations)
+  (run app)
   ;;(println "Server Running...")
+  ;;(run-migrations)
   )

@@ -1,5 +1,5 @@
 (ns doorpe.backend.db.entities.reviews
-   (:require [doorpe.backend.util :refer [bson-object-id]]))
+  (:require [doorpe.backend.util :refer [bson-object-id]]))
 
 (def entity-name "reviews")
 
