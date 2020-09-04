@@ -1,23 +1,28 @@
 (ns doorpe.backend.db.query
   (:require [monger.collection :as mc]
+            [monger.util :refer [object-id]]
             [doorpe.backend.db.db :refer [get-db-ref]]
-            [doorpe.backend.util :refer [coll-exists? bson-object-id docs-id-timestamp-stuff->str doc-id-timestamp-stuff->str]]))
+            [doorpe.backend.util :refer [exists-and-not-empty?
+                                         valid-hexa-string?
+                                         doc-object-id->str
+                                         docs-object-id->str]]))
 
 (def ^:private db (get-db-ref))
 
 (defn customers
   []
-  (let [coll "customers"]
-    (if (coll-exists? db coll)
+  (let [coll "customers"
+        db db]
+    (if (exists-and-not-empty? db coll)
       (-> (mc/find-maps db coll)
-          docs-id-timestamp-stuff->str)
+          docs-object-id->str)
       nil)))
 
 (defn customer
   [id]
   (let [coll "customers"]
-    (if (coll-exists? db coll)
-      (->> (bson-object-id id)
+    (if (and (exists-and-not-empty? db coll) (valid-hexa-string? id))
+      (->> (object-id id)
            (mc/find-map-by-id db coll)
-           doc-id-timestamp-stuff->str)
+           doc-object-id->str)
       nil)))
