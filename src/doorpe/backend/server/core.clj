@@ -1,7 +1,8 @@
 (ns doorpe.backend.server.core
   (:require [ring.adapter.jetty :refer [run-jetty]]
             [doorpe.backend.server.routes :refer [app]]
-            [doorpe.backend.db.migrate :refer [run-migrations]])
+           ;; [doorpe.backend.db.migrate :refer [run-migrations]]
+            )
   (:gen-class))
 
 (defn run
@@ -12,6 +13,6 @@
 (defn -main
   [& args]
   (run app)
-  ;;(println "Server Running...")
   ;;(run-migrations)
+  (println "Server Running...")
   )
