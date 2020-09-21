@@ -14,5 +14,4 @@
   [& args]
   (run app)
   ;;(run-migrations)
-  (println "Server Running...")
-  )
+  (println "Server Running..."))

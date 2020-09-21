@@ -1,33 +1,29 @@
 (ns doorpe.backend.server.routes
-  (:require [compojure.core :refer [defroutes GET context]]
+  (:require [compojure.core :refer [defroutes context GET POST]]
             [compojure.route :as route]
-            [ring.util.response :as response]
-            [muuntaja.middleware :as middleware]
-            [muuntaja.core :as m]
-            [jsonista.core :as j]
-            [doorpe.backend.db.query :as query]))
-
-(defn customers
-  [req]
-  (merge (response/response (query/customers))))
-
-(defn customer
-  [id req]
-  (merge (response/response (query/customer id))))
-
-(defn inspect
-  [id req]
-  (str "id <-" id "req <-" (j/write-value-as-string req)))
+            [ring.middleware.cors :refer [wrap-cors]]
+            [ring.middleware.params :refer [wrap-params]]
+            [ring.middleware.keyword-params :refer [wrap-keyword-params]]
+            [muuntaja.middleware :refer [wrap-format]]
+            [doorpe.backend.server.handler :as handler]))
 
 (defroutes app-routes
   (context "/" []
     (GET "/" [] "Hello World")
-    (GET "/customers" [] customers)
-    (GET "/customer/:id" [id] (partial customer id))
-    (GET "/inspect/:id" [id] (partial inspect id))
-    (route/not-found "Not found")))
+    (GET "/customers" [] handler/customers)
+    (GET "/customer/:id" [] handler/customer)
+    (POST "/register-as-customer" [] handler/register-as-customer!)
+    (POST "/register-as-service-provider" [] handler/register-as-service-provider!)
+    (GET "/send-otp/:contact" [] handler/send-otp))
+
+
+  (GET "/inspect/:id" [] handler/inspect)
+  (route/not-found "page not found"))
 
 (def app
   (-> app-routes
-      middleware/wrap-format
-      middleware/wrap-params))
+      (wrap-cors :access-control-allow-origin [#"http://localhost:8000"]
+                 :access-control-allow-methods [:get :put :post :delete])
+      wrap-format
+      wrap-keyword-params
+      wrap-params))

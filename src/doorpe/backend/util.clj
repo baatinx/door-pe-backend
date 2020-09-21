@@ -47,3 +47,8 @@
   [docs]
   (pmap #(doc-object-id->str %)
         docs))
+
+(defn valid-coll-name?
+  "mongodb valid coll name, check for name starts with, whether contain symbol.... - pending"
+  [coll]
+  (and (instance? String coll)))

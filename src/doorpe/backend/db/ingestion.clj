@@ -1,8 +1,8 @@
 (ns doorpe.backend.db.ingestion
   (:require [monger.collection :as mc]
-            [doorpe.backend.db.db :as db]))
+            [doorpe.backend.db.db :refer [get-db-ref]]))
 
-(def ^:private db-ref (db/get-db-ref))
+(def ^:private db-ref (get-db-ref))
 
 (defn doc
   "Accepts a map"

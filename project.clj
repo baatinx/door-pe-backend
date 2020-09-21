@@ -8,8 +8,12 @@
                  [ring/ring-core "1.8.1"]
                  [ring/ring-jetty-adapter "1.8.1"]
                  [compojure "1.6.2"]
+                 [ring-cors "0.1.13"]
                  [metosin/muuntaja "0.6.7"]
-                 [metosin/jsonista "0.2.7"]]
+                 [metosin/jsonista "0.2.7"]
+                 [ring/ring-json "0.5.0"]
+                 [clj-http "3.10.3"]
+                 [ring/ring-defaults "0.3.2"]]
   :main ^:skip-aot doorpe.backend.server.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all
