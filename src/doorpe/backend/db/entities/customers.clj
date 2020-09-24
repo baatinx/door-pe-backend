@@ -3,10 +3,13 @@
 
 (def entity-name "customers")
 
-(def entity-vec [{:_id (bson-object-id )
+(def entity-vec [{:_id (bson-object-id)
                   :name "Hammad Mir"
                   :contact 70067878963
                   :email "hammad@gmail.com"
+                  :password "my-password"
+                  :hint "my password hint"
+                  :type "admin"
                   :age 21
                   :gender "m"
                   :img "./img/...."
@@ -17,10 +20,13 @@
                   :landmark "near Al-hadees masjid"
                   :coordinates {:home {:latitude 34.064621 :longitude 74.818832}
                                 :custom {:latitude 1.302030 :longitude 103.862991}}}
-                 {:_id (bson-object-id )
+                 {:_id (bson-object-id)
                   :name "Seerat Mir"
                   :contact 700678787878
                   :email "seerat@gmail.com"
+                  :password "my-password"
+                  :hint "my password hint"
+                  :type "admin"
                   :age 20
                   :gender "f"
                   :img "./img/...."

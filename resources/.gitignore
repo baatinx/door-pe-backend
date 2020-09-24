@@ -1,1 +1,4 @@
 sms-api-key.txt
+auth_privkey.pem
+auth_pubkey.pem
+key-gen-command.txt

@@ -4,7 +4,7 @@
 
 (def ^:private host "localhost")
 (def ^:private port 27017)
-(def ^:private db-name "doorpe")
+(def ^:private db-name "doorpeDB")
 (def ^:private username "mustafa-basit")
 (def ^:private password "root")
 (def ^:private uri (str "mongodb://" host ":" port "/" db-name ))

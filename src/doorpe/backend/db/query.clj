@@ -30,3 +30,14 @@
            (mc/find-one-as-map db coll)
            doc-object-id->str)
       nil)))
+
+(defn retreive-by-custom-key-value
+  [coll key value]
+  (let [db db-ref
+        ref {key value}]
+    (if (and (valid-coll-name? coll)
+             (exists-and-not-empty? db coll))
+      (->> ref
+           (mc/find-one-as-map db coll)
+           doc-object-id->str)
+      nil)))

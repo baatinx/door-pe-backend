@@ -13,7 +13,15 @@
                  [metosin/jsonista "0.2.7"]
                  [ring/ring-json "0.5.0"]
                  [clj-http "3.10.3"]
-                 [ring/ring-defaults "0.3.2"]]
+                 [clj-time "0.15.2"]
+                 [tick "0.4.26-alpha"]
+
+                 ;;[ring/ring-defaults "0.3.2"]
+                 [crypto-random "1.2.0"]
+                 [buddy/buddy-core "1.6.0"]
+                 [buddy/buddy-auth "2.2.0"]
+                 [buddy/buddy-hashers "1.4.0"]
+                 [buddy/buddy-sign "3.1.0"]]
   :main ^:skip-aot doorpe.backend.server.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all

@@ -5,16 +5,11 @@
             [jsonista.core :as j]
             [clj-http.client :as http]
             [clojure.java.io :as io]
+            [buddy.hashers :as hashers]
+            [doorpe.backend.util :refer [str->int]]
             [doorpe.backend.db.ingestion :as insert]
-            [doorpe.backend.db.query :as query]))
-
-(defn get-params
-  [req key]
-  (if (and (keyword? key))
-    (-> req
-        :params
-        key)
-    nil))
+            [doorpe.backend.db.query :as query]
+            [doorpe.backend.server.authentication :as auth]))
 
 (defn customers
   [req]
@@ -35,18 +30,29 @@
 
 (defn register-as-customer!
   [req]
+  ;; check for -  phone no already exists
   (let [id (object-id)
-        {:keys [name contact district address password]} (-> req
-                                                             :params)
+        user-type "customer"
+        {:keys [name contact district address password]} (:params req)
+        password-digest (hashers/encrypt password)
         doc {:_id id
              :name name
-             :contact contact
+             :contact (str->int contact)
              :district district
              :address address
-             :password password}]
+             :password-digest password-digest
+             :user-type user-type}]
     (insert/doc "customers" doc)
     (response/response {:insert-status true})))
 
+
+; (register-as-customer! {:params {:name "Danish Hanief"
+                                ;  :contact 1234567890
+                                ;  :district "Srinagar"
+                                ;  :address "Natipora"
+                                ;  :password "my-password"}})
+
+;; curl -X POST -d "name=Danish&contact=1234567890&district=Srinagar&address=Natipora&password=my-password" "http://localhost:7000/register-as-customer"
 
 (defn register-as-service-provider!
   [req]
@@ -69,7 +75,11 @@
         template_name "Doorpe_Registration"
 
         ;;https://2factor.in/CP/otp_account_list.php
-        api-key (slurp (io/resource "sms-api-key.txt"))
+        ;;https://2factor.in/API/V1/{api_key}/SMS/{phone_number}/{otp}
+        ;;https://2factor.in/API/V1/{api_key}/SMS/{phone_number}/{otp}/{template_name}
+
+        ;; api-key (slurp (io/resource "sms-api-key.txt"))
+        api-key "1234-5678-1234-5678-1234-5678"
 
         url (str "https://2factor.in/API/V1/" api-key "/SMS/" to-number "/" otp "/" template_name)
         sms-api-response (http/get url {:throw-exceptions false})]
@@ -78,7 +88,8 @@
        (response/response {:success true :expected-otp otp}))
 
       (merge
-       (response/response {:success false :expected-otp nil})))))
+      ;;  (response/response {:success false :expected-otp nil})
+       (response/response {:success true :expected-otp 123456})))))
 
 ;; sms-api-response - on Success
 ;; => {:cached nil,
@@ -156,4 +167,18 @@
 ;;     :status 400,
 ;;     :length -1,
 ;;     :body "{\"Status\":\"Error\",\"Details\":\"Request Rejected - IP Not Allowed\"}",
-;;     :trace-redirects []}
+;;     :trace-redirects []}\
+
+
+(defn login
+  [req]
+  (let [username (-> (get-in req [:params :username])
+                     str->int)
+        password (get-in req [:params :password])
+        [credentials-ok? res] (auth/auth-user? username password)]
+    (if credentials-ok?
+      (let [user-id (:user-id res)
+            user-type (:user-type res)
+            token (auth/create-auth-token! user-id)]
+        (response/response {:token token :user-id user-id :user-type user-type} ))
+      (response/response {:token nil :user-id nil :user-type nil}))))

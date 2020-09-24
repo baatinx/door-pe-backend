@@ -9,12 +9,14 @@
 
 (defroutes app-routes
   (context "/" []
-    (GET "/" [] "Hello World")
+
+    (GET "/" [] "Door Pe Home page")
     (GET "/customers" [] handler/customers)
     (GET "/customer/:id" [] handler/customer)
     (POST "/register-as-customer" [] handler/register-as-customer!)
     (POST "/register-as-service-provider" [] handler/register-as-service-provider!)
-    (GET "/send-otp/:contact" [] handler/send-otp))
+    (GET "/send-otp/:contact" [] handler/send-otp)
+    (POST "/login" [] handler/login))
 
 
   (GET "/inspect/:id" [] handler/inspect)
@@ -22,7 +24,7 @@
 
 (def app
   (-> app-routes
-      (wrap-cors :access-control-allow-origin [#"http://localhost:8000"]
+      (wrap-cors :access-control-allow-origin [#"http://localhost:8000" #"http://localhost:7000" #"http://."]
                  :access-control-allow-methods [:get :put :post :delete])
       wrap-format
       wrap-keyword-params

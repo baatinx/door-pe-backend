@@ -52,3 +52,9 @@
   "mongodb valid coll name, check for name starts with, whether contain symbol.... - pending"
   [coll]
   (and (instance? String coll)))
+
+(defn str->int
+  [s]
+  (if (instance? String s)
+    (Integer/parseInt s 10)
+    s))
