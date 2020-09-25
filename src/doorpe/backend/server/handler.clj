@@ -1,32 +1,34 @@
 (ns doorpe.backend.server.handler
-  (:require [ring.util.response :as response]
+  (:require [clojure.string :as string]
+            [ring.util.response :as response]
             [monger.util :refer [object-id]]
             [muuntaja.core :as m]
             [jsonista.core :as j]
             [clj-http.client :as http]
-            [clojure.java.io :as io]
             [buddy.hashers :as hashers]
             [doorpe.backend.util :refer [str->int]]
             [doorpe.backend.db.ingestion :as insert]
             [doorpe.backend.db.query :as query]
-            [doorpe.backend.server.authentication :as auth]))
+            [doorpe.backend.server.authentication :as auth]
+            [buddy.auth :refer [authenticated? throw-unauthorized]]))
 
-(defn customers
+(defn inspect-request-map
   [req]
-  (merge
-   (response/response (query/retreive-all "customers"))))
+  (response/response (str req)))
 
-(defn customer
+(defn customer-show-all
   [req]
-  (let [id (-> req
-               :params
-               :id)]
-    (merge
-     (response/response (query/retreive-by-id "customers" id)))))
+  (response/response (query/retreive-all "customers")))
 
-(defn inspect
+(defn customer-dashboard
   [req]
-  (str req))
+  (if-not (authenticated? req)
+    (throw-unauthorized)
+    {:status 200 :body  {:status "Logged" :message (str "customer-dashboard"
+                                                        (:identity req))}}))
+; curl -H "Authorization: Token MPMQndaYXv0HRETAtvxGmPkkqPX593nOONsaSZA+pic=" http://localhost:7000/customer/dashboard
+
+; curl -H "Authorization: Token /VwzFIKzVgFOZUeykendtzbKRS/uUvBtfF+LjYB0XRI=" http://localhost:7000/customer/dashboard
 
 (defn register-as-customer!
   [req]
@@ -180,5 +182,19 @@
       (let [user-id (:user-id res)
             user-type (:user-type res)
             token (auth/create-auth-token! user-id)]
-        (response/response {:token token :user-id user-id :user-type user-type} ))
+        (response/response {:token token :user-id user-id :user-type user-type}))
       (response/response {:token nil :user-id nil :user-type nil}))))
+
+(defn logout
+  [req]
+  (if-not (authenticated? req)
+    (throw-unauthorized)
+    (let [token (-> req
+                    :headers
+                    (get "authorization")
+                    (string/split #"\s")
+                    second)
+          loggout? (auth/logout token)]
+      (if loggout?
+        (response/response {:loggout true})
+        (response/response {:loggout false})))))
