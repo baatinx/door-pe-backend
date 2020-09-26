@@ -16,7 +16,7 @@
     (if (and doc
              (:password-digest doc)
              (hashers/check password (:password-digest doc)))
-      [true {:user-id (:_id doc) :user-type (:user-type doc)}]
+      [true {:user-id (:_id doc) :user-type (:user-type doc) :name (:name doc) :address (:address doc) :latitude (get-in doc [:coordinate :home :latitude]) :longitude (get-in doc [:coordinate :home :longitude])}]
       [false {:user-id nil :user-type nil}])))
 ; (auth-user? 1234567890 "my-password")
 

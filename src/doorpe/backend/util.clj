@@ -1,6 +1,7 @@
 (ns doorpe.backend.util
   (:require [monger.collection :as mc]
-            [monger.util :refer [get-id]])
+            [monger.util :refer [get-id]]
+            [clojure.edn :as edn])
   (:import [org.bson.types ObjectId]))
 
 (defn exists-and-not-empty?
@@ -55,6 +56,4 @@
 
 (defn str->int
   [s]
-  (if (instance? String s)
-    (Integer/parseInt s 10)
-    s))
+  (edn/read-string s))
