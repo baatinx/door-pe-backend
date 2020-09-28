@@ -31,7 +31,7 @@
            doc-object-id->str)
       nil)))
 
-(defn retreive-by-custom-key-value
+(defn retreive-one-by-custom-key-value
   [coll key value]
   (let [db db-ref
         ref {key value}]
@@ -40,4 +40,33 @@
       (->> ref
            (mc/find-one-as-map db coll)
            doc-object-id->str)
+      nil)))
+
+(defn retreive-all-by-custom-key-value
+  [coll key value]
+  (let [db db-ref
+        ref {key value}]
+    (if (and (valid-coll-name? coll)
+             (exists-and-not-empty? db coll))
+      (->> ref
+           (mc/find-maps db coll)
+           docs-object-id->str)
+      nil)))
+
+(defn retreive-one-by-custom-ref
+  [coll ref]
+  (let [db db-ref]
+    (if (and (valid-coll-name? coll)
+             (exists-and-not-empty? db coll))
+      (->> (mc/find-one-as-map db coll ref)
+           doc-object-id->str)
+      nil)))
+
+(defn retreive-all-by-custom-ref
+  [coll ref]
+  (let [db db-ref]
+    (if (and (valid-coll-name? coll)
+             (exists-and-not-empty? db coll))
+      (->> (mc/find-maps db coll ref)
+           docs-object-id->str)
       nil)))

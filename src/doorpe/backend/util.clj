@@ -1,7 +1,8 @@
 (ns doorpe.backend.util
   (:require [monger.collection :as mc]
             [monger.util :refer [get-id]]
-            [clojure.edn :as edn])
+            [clojure.edn :as edn]
+            [clojure.string :as string])
   (:import [org.bson.types ObjectId]))
 
 (defn exists-and-not-empty?
@@ -14,13 +15,6 @@
 (defn valid-hexa-string?
   [s]
   (org.bson.types.ObjectId/isValid s))
-
-(defn bson-object-id
-  ([]
-   (ObjectId.))
-
-  ([hexa-string]
-   (ObjectId. hexa-string)))
 
 (defn bson-object-id->str
   ([]
@@ -49,6 +43,21 @@
   (pmap #(doc-object-id->str %)
         docs))
 
+(defn doc-custom-object-id->str
+  "Accepts a map"
+  [doc key]
+  (if (contains? doc key)
+    (let [id (get doc key)
+          hexa-string (str id)]
+      (and (valid-hexa-string? hexa-string) (assoc doc key hexa-string)))
+    doc))
+
+(defn docs-custom-object-id->str
+  "Accepts a vector of maps"
+  [docs key]
+  (pmap #(doc-custom-object-id->str % key)
+        docs))
+
 (defn valid-coll-name?
   "mongodb valid coll name, check for name starts with, whether contain symbol.... - pending"
   [coll]
@@ -56,4 +65,14 @@
 
 (defn str->int
   [s]
-  (edn/read-string s))
+  (if (instance? String s)
+    (edn/read-string s)
+    s))
+
+(defn extract-token-from-request
+  [req]
+  (-> req
+      :headers
+      (get "authorization")
+      (string/split #"\s")
+      second))

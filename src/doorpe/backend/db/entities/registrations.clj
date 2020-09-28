@@ -1,5 +1,5 @@
 (ns doorpe.backend.db.entities.registrations
- (:require [doorpe.backend.util :refer [bson-object-id]]))
+  (:require [monger.uitl :refer [object-id]]))
 
 (def entity-name "registartions")
 

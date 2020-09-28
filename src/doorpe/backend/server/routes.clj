@@ -5,24 +5,27 @@
             [ring.middleware.params :refer [wrap-params]]
             [ring.middleware.keyword-params :refer [wrap-keyword-params]]
             [muuntaja.middleware :refer [wrap-format]]
-            [doorpe.backend.server.handler :as handler]
             [doorpe.backend.server.authentication :refer [auth-backend]]
-            [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]))
+            [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
+            [doorpe.backend.home-page :refer [home-page]]
+            [doorpe.backend.register :refer [register]]
+            [doorpe.backend.server.login :refer [login]]
+
+            [doorpe.backend.dashboard :refer [dashboard]]
+            [doorpe.backend.my-bookings :refer [my-bookings]]
+            [doorpe.backend.send-otp :refer [send-otp]]
+            [doorpe.backend.server.logout :refer [logout]]))
 
 (defroutes app-routes
   (context "/" []
-    (GET "/" [] "Door Pe Home page")
-    (GET "/send-otp/:contact" [] handler/send-otp)
+    (GET "/" [] home-page)
+    (GET "/send-otp/:contact" [] send-otp)
+    (GET "/dashboard" [] dashboard)
+    (GET "/my-bookings" [] my-bookings)
 
-    (POST "/register-as-customer" [] handler/register-as-customer!)
-    (POST "/register-as-service-provider" [] handler/register-as-service-provider!)
-    (POST "/login" [] handler/login)
-    (POST "/logout" [] handler/logout))
-
-  (context "/customer" []
-    (GET "/dashboard" [] handler/customer-dashboard)
-    (GET "/show-all" [] handler/customer-show-all))
-  (GET "/inspect-request-map" [] handler/inspect-request-map)
+    (POST "/register" [] register)
+    (POST "/login" [] login)
+    (POST "/logout" [] logout))
   (route/not-found "page not found"))
 
 (def app
