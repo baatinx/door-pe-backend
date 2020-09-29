@@ -17,7 +17,13 @@
              (:password-digest doc)
              (hashers/check password (:password-digest doc)))
       [true {:user-id (:_id doc) :user-type (:user-type doc) :name (:name doc) :address (:address doc) :latitude (get-in doc [:coordinate :home :latitude]) :longitude (get-in doc [:coordinate :home :longitude])}]
-      [false {:user-id nil :user-type nil}])))
+      (let [coll "serviceProviders"
+            doc (query/retreive-one-by-custom-key-value coll key username)]
+        (if (and doc
+                 (:password-digest doc)
+                 (hashers/check password (:password-digest doc)))
+          [true {:user-id (:_id doc) :user-type (:user-type doc) :name (:name doc) :address (:address doc) :latitude (get-in doc [:coordinate :home :latitude]) :longitude (get-in doc [:coordinate :home :longitude])}]
+          [false {:user-id nil :user-type nil}])))))
 ; (auth-user? 7006787893 "q")
 
 (defn set-token-expiration

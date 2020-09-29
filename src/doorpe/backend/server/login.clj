@@ -15,4 +15,4 @@
         (response/response {:token token :user-id user-id :user-type user-type :name name :address address :latitude latitude :longitude longitude}))
       (response/response {:token nil :user-id nil :user-type nil}))))
 
-(login {:params {:username 7006787893 :password "q"}})
+;; (login {:params {:username 7006787893 :password "q"}})

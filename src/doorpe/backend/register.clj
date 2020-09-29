@@ -5,11 +5,10 @@
             [doorpe.backend.util :refer [str->int]]
             [doorpe.backend.db.ingestion :as insert]))
 
-(defn register
-  [req]
-  ;; check for -  phone no already exists
-  (let [id (object-id)
-        user-type "customer"
+(defn register-customer
+  [req user-type]
+  (let [coll "customers"
+        id (object-id)
         {:keys [name contact district address password]} (:params req)
         password-digest (hashers/encrypt password)
         doc {:_id id
@@ -19,8 +18,33 @@
              :address address
              :password-digest password-digest
              :user-type user-type}]
-    (insert/doc "customers" doc)
+    (insert/doc coll doc)
     (response/response {:insert-status true})))
+
+(defn register-service-provider
+  [req user-type]
+  (let [coll "serviceProviders"
+        id (object-id)
+        {:keys [name contact district address password]} (:params req)
+        password-digest (hashers/encrypt password)
+        doc {:_id id
+             :name name
+             :contact (str->int contact)
+             :district district
+             :address address
+             :password-digest password-digest
+             :user-type user-type}]
+    (insert/doc coll doc)
+    (response/response {:insert-status true})))
+
+(defn register
+  [req]
+  ;; check for -  phone no already exists
+  (let [{user-type :user-type} (:params req)]
+    (cond
+      (= "customer" user-type) (register-customer req user-type)
+      (= "service-provider" user-type) (register-service-provider req user-type))))
+
 
 ;;  (register-as-customer! {:params {:name "Mustafa Basit"
                                   ;; :contact 7006787893

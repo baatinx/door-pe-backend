@@ -1,7 +1,7 @@
 (ns doorpe.backend.db.entities.providers
   (:require [monger.uitl :refer [object-id]]))
 
-(def entity-name "providers")
+(def entity-name "service-providers")
 
 (def entity-vec [{:_id (object-id )
                   :name "Asif Gulzar"
