@@ -19,7 +19,7 @@
           docs-object-id->str)
       nil)))
 
-(defn retreive-by-id
+(defn retreive-all-by-id
   [coll id]
   (let [db db-ref]
     (if (and (valid-coll-name? coll)

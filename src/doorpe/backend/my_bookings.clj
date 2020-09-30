@@ -6,7 +6,6 @@
             [doorpe.backend.db.query :as query]
             [monger.operators :refer [$or]]))
 
-
 (defn transform-booking-data
   [{:keys [service-provider-id service-id booking-on service-on service-time status]}]
   (let [service-provider-res (query/retreive-one-by-custom-key-value "serviceProviders" :_id (object-id service-provider-id))
@@ -17,7 +16,7 @@
 
         services-res (query/retreive-one-by-custom-key-value "services" :_id (object-id service-id))
         service-name (:name services-res)
-        service-charge-type (:name services-res)]
+        service-charge-type (:charge-type services-res)]
     {:service-provider-name service-provider-name
      :service-provider-contact service-provider-contact
      :service-provider-address service-provider-address
@@ -44,8 +43,8 @@
                           (docs-custom-object-id->str :service-id)
                           (docs-custom-object-id->str :review-id))]
       (if (> (count booking-res) 0)
-        (response/response
-         (pmap transform-booking-data booking-res))
+        (response/response (pmap transform-booking-data
+                                 booking-res))
         (response/response nil))))
 
 (defn show-service-provider-my-bookings

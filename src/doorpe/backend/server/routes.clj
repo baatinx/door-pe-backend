@@ -7,9 +7,14 @@
             [muuntaja.middleware :refer [wrap-format]]
             [doorpe.backend.server.authentication :refer [auth-backend]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
+
             [doorpe.backend.home-page :refer [home-page]]
             [doorpe.backend.register :refer [register]]
             [doorpe.backend.server.login :refer [login]]
+            [doorpe.backend.all-categories :refer [all-categories]]
+            [doorpe.backend.all-services :refer [all-services]]
+            [doorpe.backend.all-services-by-category-id :refer [all-services-by-category-id]]
+
 
             [doorpe.backend.dashboard :refer [dashboard]]
             [doorpe.backend.my-bookings :refer [my-bookings]]
@@ -22,6 +27,9 @@
     (GET "/send-otp/:contact" [] send-otp)
     (GET "/dashboard" [] dashboard)
     (GET "/my-bookings" [] my-bookings)
+    (GET "/all-categories" [] all-categories)
+    (GET "/all-services" [] all-services)
+    (GET "/all-services-by-category-id/:category-id" [] all-services-by-category-id)
 
     (POST "/register" [] register)
     (POST "/login" [] login)
