@@ -75,4 +75,4 @@
       :headers
       (get "authorization")
       (string/split #"\s")
-      second))
+      last))

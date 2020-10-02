@@ -11,6 +11,8 @@
                   :booking-on "date"
                   :service-on "date"
                   :service-time "time"
+                  :service-charges 100
+                  :charges 300
                   :status "pending"}
                  {:_id (object-id)
                   :customer-id (object-id "5f48ab6b799d90710eaea363")
@@ -19,6 +21,8 @@
                   :booking-on "date"
                   :service-on "date"
                   :service-time "time"
+                  :service-charges 100
+                  :charges 300
                   :status "accepted"}
                  {:_id (object-id)
                   :customer-id (object-id "5f48ab6b799d90710eaea363")
@@ -27,6 +31,8 @@
                   :booking-on "date"
                   :service-on "date"
                   :service-time "time"
+                  :service-charges 100
+                  :charges 300
                   :status "canceled"
                   :cancelation-date "date"
                   :cancelation-reason "......"}
@@ -37,6 +43,8 @@
                   :booking-on "date"
                   :service-on "date"
                   :service-time "time"
+                  :service-charges 100
+                  :charges 300
                   :status "rejected"
                   :cancelation-date "date"
                   :rejection-reason "......"}
@@ -47,5 +55,7 @@
                   :booking-on "date"
                   :service-on "date"
                   :service-time "time"
+                  :service-charges 100
+                  :charges 300
                   :status "fullfilled"
                   :review-id (object-id "5f48ab6b799d90710eaea366")}])

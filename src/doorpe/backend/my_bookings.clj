@@ -4,10 +4,11 @@
             [doorpe.backend.util :refer [extract-token-from-request docs-object-id->str docs-custom-object-id->str]]
             [monger.util :refer [object-id]]
             [doorpe.backend.db.query :as query]
-            [monger.operators :refer [$or]]))
+            [monger.operators :refer [$or]]
+            [tick.core :as time]))
 
 (defn transform-booking-data
-  [{:keys [service-provider-id service-id booking-on service-on service-time status]}]
+  [{:keys [_id service-provider-id service-id booking-on service-on service-time status]}]
   (let [service-provider-res (query/retreive-one-by-custom-key-value "serviceProviders" :_id (object-id service-provider-id))
 
         service-provider-name (:name service-provider-res)
@@ -17,18 +18,18 @@
         services-res (query/retreive-one-by-custom-key-value "services" :_id (object-id service-id))
         service-name (:name services-res)
         service-charge-type (:charge-type services-res)]
-    {:service-provider-name service-provider-name
+    {:booking-id _id
+     :service-provider-name service-provider-name
      :service-provider-contact service-provider-contact
      :service-provider-address service-provider-address
      :service-name service-name
      :service-charge-type service-charge-type
-     :booking-on booking-on
-     :service-on service-on
-     :service-time service-time
+     :booking-on (str booking-on)
+     :service-on (str service-on)
+     :service-time (str service-time)
      :status status}))
 
-
-  (defn show-customer-my-bookings
+(defn show-customer-my-bookings
     [customer-id]
     (let [coll "bookings"
           pending {:status "pending"}
