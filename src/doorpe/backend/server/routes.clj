@@ -20,6 +20,7 @@
             [doorpe.backend.my-bookings :refer [my-bookings]]
             [doorpe.backend.book-a-service :refer [book-a-service]]
             [doorpe.backend.cancel-booking :refer [cancel-booking]]
+            [doorpe.backend.accept-booking :refer [accept-booking]]
             [doorpe.backend.send-otp :refer [send-otp]]
             [doorpe.backend.server.logout :refer [logout]]))
 
@@ -38,6 +39,7 @@
     (POST "/login" [] login)
     (POST "/book-a-service" [] book-a-service)
     (POST "/cancel-booking/:booking-id" [] cancel-booking)
+    (POST "/accept-booking/:booking-id" [] accept-booking)
     (POST "/logout" [] logout))
   (route/not-found "page not found"))
 

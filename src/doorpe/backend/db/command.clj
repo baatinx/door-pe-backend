@@ -1,5 +1,6 @@
 (ns doorpe.backend.db.command
   (:require [monger.collection :as mc]
+            [monger.util :refer [object-id]]
             [doorpe.backend.db.db :refer [get-db-ref]]))
 
 (def ^:private db-ref (get-db-ref))
