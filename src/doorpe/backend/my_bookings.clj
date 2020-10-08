@@ -7,23 +7,19 @@
             [monger.operators :refer [$or]]
             [tick.core :as time]))
 
-(defn transform-booking-data
+(defn transform-booking-data-for-customer
   [{:keys [_id service-provider-id service-id booking-on service-on service-time latitude longitude status]}]
   (let [service-provider-res (query/retreive-one-by-custom-key-value "serviceProviders" :_id (object-id service-provider-id))
 
         service-provider-name (:name service-provider-res)
-        service-provider-contact (:contact service-provider-res)
         service-provider-address (:address service-provider-res)
 
         services-res (query/retreive-one-by-custom-key-value "services" :_id (object-id service-id))
-        service-name (:name services-res)
-        service-charge-type (:charge-type services-res)]
+        service-name (:name services-res)]
     {:booking-id _id
      :service-provider-name service-provider-name
-     :service-provider-contact service-provider-contact
      :service-provider-address service-provider-address
      :service-name service-name
-     :service-charge-type service-charge-type
      :booking-on (str booking-on)
      :service-on (str service-on)
      :service-time (str service-time)
@@ -46,7 +42,7 @@
                         (docs-custom-object-id->str :service-id)
                         (docs-custom-object-id->str :review-id))]
     (if (> (count booking-res) 0)
-      (response/response (pmap transform-booking-data
+      (response/response (pmap transform-booking-data-for-customer
                                booking-res))
       (response/response nil))))
 
@@ -56,18 +52,14 @@
   (let [customers-res (query/retreive-one-by-custom-key-value "customers" :_id (object-id customer-id))
 
         customer-name (:name customers-res)
-        customer-contact (:contact customers-res)
         customer-address (:address customers-res)
 
         services-res (query/retreive-one-by-custom-key-value "services" :_id (object-id service-id))
-        service-name (:name services-res)
-        service-charge-type (:charge-type services-res)]
+        service-name (:name services-res)]
     {:booking-id _id
      :customer-name customer-name
-     :customer-contact customer-contact
      :customer-address customer-address
      :service-name service-name
-     :service-charge-type service-charge-type
      :booking-on (str booking-on)
      :service-on (str service-on)
      :service-time (str service-time)
@@ -78,8 +70,6 @@
 (defn show-service-provider-my-bookings
   [service-provider-id]
   (let [coll "bookings"
-
-
         pending {:status "pending"}
         accepted {:status "accepted"}
         ref {:service-provider-id (object-id service-provider-id)

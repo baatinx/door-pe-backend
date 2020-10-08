@@ -16,7 +16,6 @@
         professional-degree-holder (:professional-degree-holder service)]
     {:_id _id
      :name name
-     :contact contact
      :district district
      :address address
      :service-charges service-charges

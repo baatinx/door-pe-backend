@@ -8,7 +8,7 @@
             [doorpe.backend.db.query :as query]
             [doorpe.backend.db.command :as command]))
 
-(defn auth-user?
+(defn is-customer
   [username password]
   (let [coll "customers"
         key :contact
@@ -16,15 +16,38 @@
     (if (and doc
              (:password-digest doc)
              (hashers/check password (:password-digest doc)))
-      [true {:user-id (:_id doc) :user-type (:user-type doc) :name (:name doc) :address (:address doc) :latitude (get-in doc [:coordinate :home :latitude]) :longitude (get-in doc [:coordinate :home :longitude])}]
-      (let [coll "serviceProviders"
-            doc (query/retreive-one-by-custom-key-value coll key username)]
-        (if (and doc
-                 (:password-digest doc)
-                 (hashers/check password (:password-digest doc)))
-          [true {:user-id (:_id doc) :user-type (:user-type doc) :name (:name doc) :address (:address doc) :latitude (get-in doc [:coordinate :home :latitude]) :longitude (get-in doc [:coordinate :home :longitude])}]
-          [false {:user-id nil :user-type nil}])))))
-; (auth-user? 7006787893 "q")
+      [true {:user-id (:_id doc) :user-type (:user-type doc) :name (:name doc)}]
+      false)))
+
+(defn is-service-provider
+  [username password]
+  (let [coll "serviceProviders"
+        key :contact
+        doc (query/retreive-one-by-custom-key-value coll key username)]
+    (if (and doc
+             (:password-digest doc)
+             (hashers/check password (:password-digest doc)))
+      [true {:user-id (:_id doc) :user-type (:user-type doc) :name (:name doc)}]
+      false)))
+
+(defn is-admin
+  [username password]
+  (let [coll "admins"
+        key :contact
+        doc (query/retreive-one-by-custom-key-value coll key username)]
+    (if (and doc
+             (:password-digest doc)
+             (hashers/check password (:password-digest doc)))
+      [true {:user-id (:_id doc) :user-type (:user-type doc) :name (:name doc)}]
+      false)))
+
+(defn auth-user?
+  [username password]
+  (or
+   (is-customer username password)
+   (is-service-provider username password)
+   (is-admin username password)
+   [false {:user-id nil :user-type nil}]))
 
 (defn set-token-expiration
   []

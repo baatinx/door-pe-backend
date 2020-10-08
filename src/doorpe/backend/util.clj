@@ -35,7 +35,7 @@
     (let [id (get-id doc)
           hexa-string (str id)]
       (and (valid-hexa-string? hexa-string) (assoc doc :_id hexa-string)))
-    nil))
+    doc))
 
 (defn docs-object-id->str
   "Accepts a vector of maps"
