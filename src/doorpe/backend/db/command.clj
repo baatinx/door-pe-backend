@@ -16,10 +16,6 @@
   (let [db db-ref]
     (mc/update db coll conditions doc)))
 
-(update-doc "bookings" {:_id (object-id "5f70b6b2c6da85754f72b682")
-                        :customer-id (object-id "5f70b82dc6da85754f72b68d")}
-            {:status "pend"})
-
 (defn update-doc-by-id
   [coll object-id doc]
   (let [db db-ref]

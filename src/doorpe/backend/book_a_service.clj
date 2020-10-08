@@ -7,7 +7,7 @@
 
 (defn book-a-service
   [req]
-  (let [{:keys [customer-id service-provider-id service-id service-on service-time service-charges charges]} (:params req)
+  (let [{:keys [customer-id service-provider-id service-id service-on service-time service-charges charges latitude longitude]} (:params req)
         coll "bookings"
         id (object-id)
         status "pending"
@@ -21,7 +21,9 @@
              :service-time (time/time service-time)
              :service-charges (str->int service-charges)
              :charges (str->int charges)
-             :status status}
+             :status status
+             :latitude latitude
+             :longitude longitude}
         res (insert/doc coll doc)]
     (if res
       (response/response {:insert-status true})

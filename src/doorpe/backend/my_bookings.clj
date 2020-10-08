@@ -8,7 +8,7 @@
             [tick.core :as time]))
 
 (defn transform-booking-data
-  [{:keys [_id service-provider-id service-id booking-on service-on service-time status]}]
+  [{:keys [_id service-provider-id service-id booking-on service-on service-time latitude longitude status]}]
   (let [service-provider-res (query/retreive-one-by-custom-key-value "serviceProviders" :_id (object-id service-provider-id))
 
         service-provider-name (:name service-provider-res)
@@ -27,6 +27,8 @@
      :booking-on (str booking-on)
      :service-on (str service-on)
      :service-time (str service-time)
+     :latitude latitude
+     :longitude longitude
      :status status}))
 
 (defn show-customer-my-bookings
@@ -50,7 +52,7 @@
 
 
 (defn transform-booking-data-for-service-provider
-  [{:keys [_id  service-id booking-on customer-id service-on service-time status]}]
+  [{:keys [_id  service-id booking-on customer-id service-on service-time latitude longitude status]}]
   (let [customers-res (query/retreive-one-by-custom-key-value "customers" :_id (object-id customer-id))
 
         customer-name (:name customers-res)
@@ -69,6 +71,8 @@
      :booking-on (str booking-on)
      :service-on (str service-on)
      :service-time (str service-time)
+     :latitude latitude
+     :longitude longitude
      :status status}))
 
 (defn show-service-provider-my-bookings
