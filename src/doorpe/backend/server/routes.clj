@@ -22,7 +22,10 @@
             [doorpe.backend.cancel-booking :refer [cancel-booking]]
             [doorpe.backend.accept-booking :refer [accept-booking]]
             [doorpe.backend.send-otp :refer [send-otp]]
-            [doorpe.backend.server.logout :refer [logout]]))
+            [doorpe.backend.server.logout :refer [logout]]
+
+            [doorpe.backend.admin-add :refer [admin-add]]
+            [doorpe.backend.admin-edit :refer [admin-edit]]))
 
 (defroutes app-routes
   (context "/" []
@@ -40,7 +43,10 @@
     (POST "/book-a-service" [] book-a-service)
     (POST "/cancel-booking/:booking-id" [] cancel-booking)
     (POST "/accept-booking/:booking-id" [] accept-booking)
-    (POST "/logout" [] logout))
+    (POST "/logout" [] logout)
+
+    (POST "/admin-add/:add-what" [] admin-add)
+    (POST "/admin-edit/:edit-what" [] admin-edit))
   (route/not-found "page not found"))
 
 (def app
