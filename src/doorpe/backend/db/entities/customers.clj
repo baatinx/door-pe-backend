@@ -12,8 +12,7 @@
                   :age 21
                   :gender "m"
                   :img "./img/...."
-                  :District "Srinagar"
-                  :city "Srinagar"
+                  :district "Srinagar"
                   :address "House no. 105, Solina Payeen, opp. petrol pump"
                   :pin-code 190008
                   :landmark "near Al-hadees masjid"
@@ -29,8 +28,7 @@
                   :age 20
                   :gender "f"
                   :img "./img/...."
-                  :District "Srinagar"
-                  :city "Srinagar"
+                  :district "Srinagar"
                   :address "Rajbagh"
                   :landmark "Opposite Post office"
                   :pin-code 190009

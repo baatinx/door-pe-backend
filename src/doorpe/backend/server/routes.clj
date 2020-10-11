@@ -1,5 +1,5 @@
 (ns doorpe.backend.server.routes
-  (:require [compojure.core :refer [defroutes context GET POST]]
+  (:require [compojure.core :refer [defroutes context GET POST PUT PATCH]]
             [compojure.route :as route]
             [ring.middleware.cors :refer [wrap-cors]]
             [ring.middleware.params :refer [wrap-params]]
@@ -21,6 +21,8 @@
             [doorpe.backend.book-a-service :refer [book-a-service]]
             [doorpe.backend.cancel-booking :refer [cancel-booking]]
             [doorpe.backend.accept-booking :refer [accept-booking]]
+            [doorpe.backend.my-profile :refer [my-profile]]
+            [doorpe.backend.update-my-profile :refer [update-my-profile]]
             [doorpe.backend.send-otp :refer [send-otp]]
             [doorpe.backend.server.logout :refer [logout]]
 
@@ -37,6 +39,7 @@
     (GET "/all-services" [] all-services)
     (GET "/all-services-by-category-id/:category-id" [] all-services-by-category-id)
     (GET "/all-service-providers-by-service-id/:service-id" [] all-service-providers-by-service-id)
+    (GET "/my-profile" [] my-profile)
 
     (POST "/register" [] register)
     (POST "/login" [] login)
@@ -44,6 +47,8 @@
     (POST "/cancel-booking/:booking-id" [] cancel-booking)
     (POST "/accept-booking/:booking-id" [] accept-booking)
     (POST "/logout" [] logout)
+
+    (POST "/update-my-profile" [] update-my-profile)
 
     (POST "/admin-add/:add-what" [] admin-add)
     (POST "/admin-edit/:edit-what" [] admin-edit))
