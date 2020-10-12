@@ -3,7 +3,17 @@
             [tick.core :as time]
             [monger.util :refer [object-id]]
             [doorpe.backend.util :refer [str->int]]
+            [doorpe.backend.server.send-email :refer [send-email]]
+            [doorpe.backend.db.query :as query]
             [doorpe.backend.db.ingestion :as insert]))
+
+(defn service-provider-id->service-provider-mail
+  [service-provider-id]
+  (let [coll "serviceProviders"]
+    (->
+     (query/retreive-by-id coll service-provider-id)
+     :email
+     str)))
 
 (defn book-a-service
   [req]
@@ -26,5 +36,8 @@
              :longitude longitude}
         res (insert/doc coll doc)]
     (if res
-      (response/response {:insert-status true})
+      (let [email-id (-> service-provider-id
+                         service-provider-id->service-provider-mail)
+            success? (send-email email-id "DoorPe - New Booking" "<p>Someone needs your service, please login into your account for more info.</p>")]
+        (response/response {:status true}))
       (response/response {:insert-status false}))))

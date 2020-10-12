@@ -27,13 +27,12 @@
   [req user-type]
   (let [coll "serviceProviders"
         id (object-id)
-        {:keys [name contact district address password latitude longitude]} (:params req)
+        {:keys [name contact district password latitude longitude]} (:params req)
         password-digest (hashers/encrypt password)
         doc {:_id id
              :name name
              :contact (str->int contact)
              :district district
-             :address address
              :password-digest password-digest
              :user-type user-type
              :latitude latitude

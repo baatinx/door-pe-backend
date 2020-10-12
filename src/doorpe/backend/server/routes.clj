@@ -23,7 +23,7 @@
             [doorpe.backend.accept-booking :refer [accept-booking]]
             [doorpe.backend.my-profile :refer [my-profile]]
             [doorpe.backend.update-my-profile :refer [update-my-profile]]
-            [doorpe.backend.send-otp :refer [send-otp]]
+            [doorpe.backend.server.send-otp :refer [send-otp]]
             [doorpe.backend.server.logout :refer [logout]]
 
             [doorpe.backend.admin-add :refer [admin-add]]

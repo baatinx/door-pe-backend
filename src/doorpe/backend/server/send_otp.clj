@@ -1,4 +1,4 @@
-(ns doorpe.backend.send-otp
+(ns doorpe.backend.server.send-otp
   (:require [ring.util.response :as response]
             [clj-http.client :as http]
             [clojure.java.io :as io]))

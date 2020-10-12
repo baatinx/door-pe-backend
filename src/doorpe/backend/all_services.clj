@@ -5,5 +5,5 @@
 (defn all-services
   [req]
   (let [coll "services"
-        categories (query/retreive-all coll)]
+        categories (query/retreive-coll coll)]
     (response/response categories)))

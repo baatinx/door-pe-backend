@@ -1,20 +1,20 @@
 (ns doorpe.backend.db.entities.providers
   (:require [monger.uitl :refer [object-id]]))
 
-(def entity-name "service-providers")
+(def entity-name "servicePoviders")
 
-(def entity-vec [{:_id (object-id )
+(def entity-vec [{:_id (object-id)
                   :name "Asif Gulzar"
                   :contact 7006696969
                   :email "asif@gmail.com"
+                  :user-type "service-provider"
+                  :password-digest "password-digest"
+                  :password-hint "my password hint"
+                  :district "Pulwama"
                   :age 25
                   :gender "m"
                   :img "./img/...."
-                  :District "Pulwama"
-                  :city "Pulwama"
                   :pin-code 170008
-                  :address "Awatipora, near main Bus Stop"
-                  :landmark nil
                   :bio "Hi! Everyone .................."
                   :coordinates {:office {:latitude 34.064621 :longitude 74.818832}
                                 :custom {:latitude nil :longitude nil}}

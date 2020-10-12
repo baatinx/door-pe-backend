@@ -6,7 +6,25 @@
             [tick.core :as time]
             [monger.util :refer [object-id]]
             [monger.operators :refer [$set]]
+            [doorpe.backend.server.send-email :refer [send-email]]
+            [doorpe.backend.db.query :as query]
             [doorpe.backend.db.command :as command]))
+
+(defn customer-id->customer-mail
+  [customer-id]
+  (let [coll "customers"]
+    (->
+     (query/retreive-by-id coll customer-id)
+     :email
+     str)))
+
+(defn booking-id->customer-id
+  [booking-id]
+  (let [coll "bookings"]
+    (->
+     (query/retreive-by-id coll booking-id)
+     :customer-id
+     str)))
 
 (defn accept-booking
   [req]
@@ -26,5 +44,9 @@
                       :service-provider-id (object-id user-id)}
           doc {$set {:status "accepted"}}]
       (if (command/update-doc coll conditions doc)
-        (response/response {:status true})
+        (let [email-id (-> booking-id
+                           booking-id->customer-id
+                           customer-id->customer-mail)
+              success? (send-email email-id "DoorPe - Booking Accepted" "<p>Your booking has been accepted by our service provider, please login into your account for more info.</p>")]
+          (response/response {:status true}))
         (response/response {:status false})))))

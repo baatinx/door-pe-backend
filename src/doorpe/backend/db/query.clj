@@ -10,7 +10,7 @@
 
 (def ^:private db-ref (get-db-ref))
 
-(defn retreive-all
+(defn retreive-coll
   [coll]
   (let [db db-ref]
     (if (and (valid-coll-name? coll)
@@ -19,7 +19,7 @@
           docs-object-id->str)
       nil)))
 
-(defn retreive-all-by-id
+(defn retreive-by-id
   [coll id]
   (let [db db-ref]
     (if (and (valid-coll-name? coll)

@@ -5,5 +5,5 @@
 (defn all-categories
   [req]
   (let [coll "categories"
-        categories (query/retreive-all coll)]
+        categories (query/retreive-coll coll)]
     (response/response categories)))

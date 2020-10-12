@@ -21,7 +21,8 @@
                  [buddy/buddy-core "1.6.0"]
                  [buddy/buddy-auth "2.2.0"]
                  [buddy/buddy-hashers "1.4.0"]
-                 [buddy/buddy-sign "3.1.0"]]
+                 [buddy/buddy-sign "3.1.0"]
+                 [com.draines/postal "2.0.3"]]
   :main ^:skip-aot doorpe.backend.server.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all

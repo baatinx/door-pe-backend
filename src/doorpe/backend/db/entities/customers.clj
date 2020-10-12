@@ -6,8 +6,9 @@
                   :name "Hammad Mir"
                   :contact 70067878963
                   :email "hammad@gmail.com"
-                  :password "my-password"
-                  :hint "my password hint"
+                  :user-type "customer"
+                  :password-digest "password-digest"
+                  :password-hint "my password hint"
                   :type "admin"
                   :age 21
                   :gender "m"

@@ -25,7 +25,19 @@
     (response/response {:status true})))
 
 (defn update-service-provider-profile
-  [service-provider-id params])
+  [service-provider-id {:keys [name email age gender district pin-code latitude longitude]}]
+  (let [id (object-id service-provider-id)
+        coll "serviceProviders"
+        doc {$set {:name name
+                   :email email
+                   :age (str->int age)
+                   :gender gender
+                   :district district
+                   :pin-code (str->int pin-code)
+                   :latitude latitude
+                   :longitude longitude}}]
+    (command/update-doc-by-id coll id doc)
+    (response/response {:status true})))
 
 (defn update-my-profile
   [req]
