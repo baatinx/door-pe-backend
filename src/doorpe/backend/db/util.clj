@@ -11,3 +11,19 @@
         user-type (:user-type res)]
     {:user-id user-id
      :user-type user-type}))
+
+(defn booking-id->customer-details
+  [booking-id]
+  (let [coll "bookings"
+        customer-id  (-> (query/retreive-by-id coll booking-id)
+                         :customer-id
+                         str)]
+    (query/retreive-by-id "customers" customer-id)))
+
+(defn booking-id->service-provider-details
+  [booking-id]
+  (let [coll "bookings"
+        service-provider-id  (-> (query/retreive-by-id coll booking-id)
+                                 :service-provider-id
+                                 str)]
+    (query/retreive-by-id "serviceProviders" service-provider-id)))

@@ -19,8 +19,9 @@
             [doorpe.backend.dashboard :refer [dashboard]]
             [doorpe.backend.my-bookings :refer [my-bookings]]
             [doorpe.backend.book-a-service :refer [book-a-service]]
-            [doorpe.backend.cancel-booking :refer [cancel-booking]]
             [doorpe.backend.accept-booking :refer [accept-booking]]
+            [doorpe.backend.cancel-booking :refer [cancel-booking]]
+            [doorpe.backend.reject-booking :refer [reject-booking]]
             [doorpe.backend.my-profile :refer [my-profile]]
             [doorpe.backend.update-my-profile :refer [update-my-profile]]
             [doorpe.backend.server.send-otp :refer [send-otp]]
@@ -46,6 +47,7 @@
     (POST "/book-a-service" [] book-a-service)
     (POST "/cancel-booking/:booking-id" [] cancel-booking)
     (POST "/accept-booking/:booking-id" [] accept-booking)
+    (POST "/reject-booking/:booking-id" [] reject-booking)
     (POST "/logout" [] logout)
 
     (POST "/update-my-profile" [] update-my-profile)

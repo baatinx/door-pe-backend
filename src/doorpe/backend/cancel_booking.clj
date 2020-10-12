@@ -2,10 +2,11 @@
   (:require [ring.util.response :as response]
             [buddy.auth :refer [authenticated? throw-unauthorized]]
             [doorpe.backend.util :refer [extract-token-from-request]]
-            [doorpe.backend.db.util :refer [token->token-details]]
+            [doorpe.backend.db.util :refer [token->token-details booking-id->service-provider-details]]
             [tick.core :as time]
             [monger.util :refer [object-id]]
             [monger.operators :refer [$set]]
+            [doorpe.backend.server.send-email :refer [send-email]]
             [doorpe.backend.db.command :as command]))
 
 (defn cancel-booking
@@ -26,7 +27,15 @@
                       :customer-id (object-id user-id)}
           doc {$set {:status "canceled"
                      :cancelation-date (time/today)
-                     :cancelation-reason "cancelation reason......"}}]
-      (if (command/update-doc coll conditions doc)
-        (response/response {:status true})
+                     :cancelation-reason "cancelation reason......"}}
+          res (and  (= "customer" user-type) (command/update-doc coll conditions doc))]
+      (if res
+        (let [service-provider (-> booking-id
+                                   booking-id->service-provider-details)
+              name (:name service-provider)
+              email-id (:email service-provider)
+              subject "DoorPe - Booking Canceled"
+              body (str  "<p><strong>" name "</strong>, your client has canceled the booking, please login into your account for more info.</p>")
+              success? (send-email email-id subject body)]
+          (response/response {:status true}))
         (response/response {:status false})))))
