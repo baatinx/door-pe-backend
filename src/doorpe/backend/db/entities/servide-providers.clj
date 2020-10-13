@@ -10,7 +10,7 @@
                   :user-type "service-provider"
                   :password-digest "password-digest"
                   :password-hint "my password hint"
-                  :district "Pulwama"
+                  :district "pulwama"
                   :age 25
                   :gender "m"
                   :img "./img/...."

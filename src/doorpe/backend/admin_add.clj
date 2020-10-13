@@ -19,11 +19,12 @@
   [{:keys [name category-id charge-type critical-service description]}]
   (let [id (object-id)
         coll "services"
+        is-critical-service? (if (= "true" critical-service) true false)
         doc {:_id id
              :name name
              :category-id (object-id category-id)
              :charge-type charge-type
-             :critical-service critical-service
+             :critical-service is-critical-service?
              :description description}]
     (if  (insert/doc coll doc)
       (response/response {:insert-status true})
