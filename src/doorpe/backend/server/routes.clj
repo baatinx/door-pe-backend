@@ -30,11 +30,12 @@
             [doorpe.backend.server.logout :refer [logout]]
 
             [doorpe.backend.admin-add :refer [admin-add]]
-            [doorpe.backend.admin-edit :refer [admin-edit]]))
+            [doorpe.backend.admin-edit :refer [admin-edit]]
+            [clojure.string :as string]))
 
 (defroutes app-routes
   (context "/" []
-    (POST "/" [] home-page)
+    (GET "/" [] home-page)
     (GET "/send-otp/:contact" [] send-otp)
     (GET "/dashboard" [] dashboard)
     (GET "/my-bookings" [] my-bookings)
