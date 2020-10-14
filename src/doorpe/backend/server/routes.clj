@@ -4,6 +4,7 @@
             [ring.middleware.cors :refer [wrap-cors]]
             [ring.middleware.params :refer [wrap-params]]
             [ring.middleware.keyword-params :refer [wrap-keyword-params]]
+            [ring.middleware.multipart-params :refer [wrap-multipart-params]]
             [muuntaja.middleware :refer [wrap-format]]
             [doorpe.backend.server.authentication :refer [auth-backend]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
@@ -33,7 +34,7 @@
 
 (defroutes app-routes
   (context "/" []
-    (GET "/" [] home-page)
+    (POST "/" [] home-page)
     (GET "/send-otp/:contact" [] send-otp)
     (GET "/dashboard" [] dashboard)
     (GET "/my-bookings" [] my-bookings)
@@ -66,4 +67,5 @@
                  :access-control-allow-methods [:get :put :post :delete])
       wrap-format
       wrap-keyword-params
-      wrap-params))
+      wrap-params
+      wrap-multipart-params))

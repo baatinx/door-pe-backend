@@ -1,17 +1,23 @@
 (ns doorpe.backend.admin-add
   (:require [ring.util.response :as response]
             [buddy.auth :refer [authenticated? throw-unauthorized]]
+            [doorpe.backend.server.file-upload :refer [file-upload]]
             [monger.util :refer [object-id]]
             [doorpe.backend.db.ingestion :as insert]))
 
 (defn add-category
-  [{:keys [name description]}]
+  [{:keys [name description my-file]}]
   (let [id (object-id)
         coll "categories"
-        doc {:_id id
-             :name name
-             :description description}]
-    (if  (insert/doc coll doc)
+        {file-status :file-status file-name :file-name} (file-upload my-file)
+        doc (and file-status
+                 {:_id id
+                  :name name
+                  :description description
+                  :img file-name})
+        res  (and doc
+                  (insert/doc coll doc))]
+    (if res
       (response/response {:insert-status true})
       (response/response {:insert-status false}))))
 
@@ -34,9 +40,8 @@
   [req]
   (if-not (authenticated? req)
     (throw-unauthorized)
-    (let [add-what (-> req
-                       :params
-                       :add-what)]
+    (let [params (:params req)
+          add-what (:add-what params)]
       (cond
-        (= "category" add-what) (add-category (:params req))
-        (= "service" add-what) (add-service (:params req))))))
+        (= "category" add-what) (add-category params)
+        (= "service" add-what) (add-service params)))))

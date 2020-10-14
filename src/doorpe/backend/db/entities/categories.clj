@@ -9,10 +9,13 @@
 
 (def entity-vec [{:_id (:home category-id)
                   :name "Home Appliances/Hardware Repair"
-                  :description "Get Experts and background verified professional at home for service like AC Repair, Oven ... "}
+                  :description "Get Experts and background verified professional at home for service like AC Repair, Oven ... "
+                  :img "image.png"}
                  {:_id (:clean category-id)
                   :name "Cleaning & Disinfection"
-                  :description "Description ..."}
+                  :description "Description ..."
+                  :img "image.png"}
                  {:_id (:beauty category-id)
                   :name "Beauty and personal care"
-                  :description "Description ..."}])
+                  :description "Description ..."
+                  :img "image.png"}])
