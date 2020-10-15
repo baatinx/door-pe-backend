@@ -9,7 +9,7 @@
   [{:keys [name description my-file]}]
   (let [id (object-id)
         coll "categories"
-        {file-status :file-status file-name :file-name} (file-upload my-file)
+        {file-status :file-status file-name :file-name} (file-upload my-file "category")
         doc (and file-status
                  {:_id id
                   :name name
@@ -26,7 +26,7 @@
   (let [id (object-id)
         coll "services"
         is-critical-service? (if (= "true" critical-service) true false)
-        {file-status :file-status file-name :file-name} (file-upload my-file)
+        {file-status :file-status file-name :file-name} (file-upload my-file "service")
         doc (and file-status
                  {:_id id
                   :name name

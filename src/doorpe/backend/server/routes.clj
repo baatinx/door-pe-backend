@@ -36,7 +36,7 @@
 (defroutes app-routes
   (context "/" []
     (GET "/" [] home-page)
-    (GET "/send-otp/:contact" [] send-otp)
+    (GET "/send-otp/:contact/:otp-method" [] send-otp)
     (GET "/dashboard" [] dashboard)
     (GET "/my-bookings" [] my-bookings)
     (GET "/all-categories" [] all-categories)

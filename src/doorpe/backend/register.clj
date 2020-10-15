@@ -11,7 +11,7 @@
   (let [coll "customers"
         id (object-id)
         {:keys [name contact district address password latitude longitude my-file]} params
-        {file-status :file-status file-name :file-name} (file-upload my-file)
+        {file-status :file-status file-name :file-name} (file-upload my-file "customer")
         password-digest (and file-status
                              (hashers/encrypt password))
         doc (and password
@@ -36,7 +36,7 @@
   (let [coll "serviceProviders"
         id (object-id)
         {:keys [name contact district password latitude longitude my-file]} params
-        {file-status :file-status file-name :file-name} (file-upload my-file)
+        {file-status :file-status file-name :file-name} (file-upload my-file "service-provider")
         password-digest (and file-status
                              (hashers/encrypt password))
         doc (and password-digest

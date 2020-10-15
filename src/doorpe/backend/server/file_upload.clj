@@ -5,12 +5,14 @@
   (:import [java.io File]))
 
 (defn file-upload
-  [file]
+  [file prefix]
   (let [file-name (:filename file)
         extension (last (string/split file-name #"\."))
         timestamp (-> (object-id)
                       str)
-        new-file-name (str timestamp "." extension)
+        prefix-present (and (not (empty? prefix))
+                            (str prefix "-"))
+        new-file-name (str prefix-present timestamp "." extension)
         ;; content-type (:content-type file)
         ;; size (:size file)
         temp-file (-> file
