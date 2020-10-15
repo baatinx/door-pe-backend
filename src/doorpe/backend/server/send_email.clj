@@ -13,11 +13,14 @@
 
 (defn send-email
   [to subject body]
-  (let [res (send-message conn {:from email-id
-                                :to to
-                                :subject subject
-                                :body [{:type "text/html"
-                                        :content (str "<html><body>" body "</body></html>")}]})]
+  (let [res (and to
+                 subject
+                 body
+                 (send-message conn {:from email-id
+                                     :to to
+                                     :subject subject
+                                     :body [{:type "text/html"
+                                             :content (str "<html><body>" body "</body></html>")}]}))]
     (if (= :SUCCESS (:error res))
       true
       false)))

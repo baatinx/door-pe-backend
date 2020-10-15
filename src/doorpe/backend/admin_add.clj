@@ -22,17 +22,22 @@
       (response/response {:insert-status false}))))
 
 (defn add-service
-  [{:keys [name category-id charge-type critical-service description]}]
+  [{:keys [name category-id charge-type critical-service description my-file]}]
   (let [id (object-id)
         coll "services"
         is-critical-service? (if (= "true" critical-service) true false)
-        doc {:_id id
-             :name name
-             :category-id (object-id category-id)
-             :charge-type charge-type
-             :critical-service is-critical-service?
-             :description description}]
-    (if  (insert/doc coll doc)
+        {file-status :file-status file-name :file-name} (file-upload my-file)
+        doc (and file-status
+                 {:_id id
+                  :name name
+                  :category-id (object-id category-id)
+                  :charge-type charge-type
+                  :critical-service is-critical-service?
+                  :description description
+                  :img file-name})
+        res  (and doc
+                  (insert/doc coll doc))]
+    (if res
       (response/response {:insert-status true})
       (response/response {:insert-status false}))))
 

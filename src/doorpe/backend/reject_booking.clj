@@ -37,6 +37,6 @@
               email-id (:email customer)
               subject "DoorPe - Booking Rejected"
               body (str  "<p><strong>" name "</strong> your booking has been rejected by our service provider, please login into your account for more info.</p>")
-              success? (send-email email-id subject body)]
+              email-success? (send-email email-id subject body)]
           (response/response {:status true}))
         (response/response {:status false})))))

@@ -2,6 +2,7 @@
   (:require [monger.collection :as mc]
             [monger.util :refer [get-id]]
             [clojure.edn :as edn]
+            [clojure.java.io :as io]
             [clojure.string :as string])
   (:import [org.bson.types ObjectId]))
 
@@ -76,3 +77,22 @@
       (get "authorization")
       (string/split #"\s")
       last))
+
+; https://stackoverflow.com/questions/11825444/clojure-base64-encoding/16781372
+; https://github.com/cloojure/tupelo
+(defn convert-image-from-filesystem
+  "Function to convert image from filepath to base64"
+  [image-path]
+  (->> image-path
+       (clojure.java.io/file)
+       (org.apache.commons.io.FileUtils/readFileToByteArray)
+       (.encodeToString (java.util.Base64/getEncoder))))
+
+(defn img->base64
+  [doc]
+  (let [file-name (:img doc)
+        file-extension (and file-name (last (string/split file-name #"\.")))
+        file (and file-name (io/resource (str "img/" file-name)))
+        base64-str (and file (convert-image-from-filesystem file))
+        src (format "data:image/%s;base64,%s" file-extension base64-str)]
+    (assoc doc :img src)))

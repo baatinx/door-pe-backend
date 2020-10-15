@@ -40,6 +40,6 @@
               email-id (:email service-provider-details)
               subject "DoorPe - New Booking"
               body (str  "<p><strong>" name "</strong>, someone needs your service, please login into your account for more info.</p>")
-              success? (send-email email-id subject body)]
+              email-success? (send-email email-id subject body)]
           (response/response {:status true}))
         (response/response {:insert-status false})))))

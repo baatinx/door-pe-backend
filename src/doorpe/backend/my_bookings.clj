@@ -3,9 +3,10 @@
             [buddy.auth :refer [authenticated? throw-unauthorized]]
             [doorpe.backend.util :refer [extract-token-from-request docs-object-id->str docs-custom-object-id->str]]
             [monger.util :refer [object-id]]
-            [doorpe.backend.db.query :as query]
+            [doorpe.backend.util :refer [img->base64]]
             [monger.operators :refer [$or]]
-            [tick.core :as time]))
+            [tick.core :as time]
+            [doorpe.backend.db.query :as query]))
 
 (defn transform-booking-data-for-customer
   [{:keys [_id service-provider-id service-id booking-on service-on service-time latitude longitude status]}]
@@ -13,19 +14,24 @@
 
         service-provider-name (:name service-provider-res)
         service-provider-address (:address service-provider-res)
+        service-provider-img (:img service-provider-res)
+
 
         services-res (query/retreive-one-by-custom-key-value "services" :_id (object-id service-id))
-        service-name (:name services-res)]
-    {:booking-id _id
-     :service-provider-name service-provider-name
-     :service-provider-address service-provider-address
-     :service-name service-name
-     :booking-on (str booking-on)
-     :service-on (str service-on)
-     :service-time (str service-time)
-     :latitude latitude
-     :longitude longitude
-     :status status}))
+        service-name (:name services-res)
+        doc {:booking-id _id
+             :service-provider-name service-provider-name
+             :service-provider-address service-provider-address
+             :service-name service-name
+             :booking-on (str booking-on)
+             :service-on (str service-on)
+             :service-time (str service-time)
+             :latitude latitude
+             :longitude longitude
+             :status status
+             :img service-provider-img}
+        res (img->base64 doc)]
+    res))
 
 (defn show-customer-my-bookings
   [customer-id]
@@ -53,19 +59,23 @@
 
         customer-name (:name customers-res)
         customer-address (:address customers-res)
+        customer-img (:img customers-res)
 
         services-res (query/retreive-one-by-custom-key-value "services" :_id (object-id service-id))
-        service-name (:name services-res)]
-    {:booking-id _id
-     :customer-name customer-name
-     :customer-address customer-address
-     :service-name service-name
-     :booking-on (str booking-on)
-     :service-on (str service-on)
-     :service-time (str service-time)
-     :latitude latitude
-     :longitude longitude
-     :status status}))
+        service-name (:name services-res)
+        doc {:booking-id _id
+             :customer-name customer-name
+             :customer-address customer-address
+             :service-name service-name
+             :booking-on (str booking-on)
+             :service-on (str service-on)
+             :service-time (str service-time)
+             :latitude latitude
+             :longitude longitude
+             :status status
+             :img customer-img}
+        res (img->base64 doc)]
+    res))
 
 (defn show-service-provider-my-bookings
   [service-provider-id]

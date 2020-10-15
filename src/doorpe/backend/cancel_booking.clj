@@ -36,6 +36,6 @@
               email-id (:email service-provider)
               subject "DoorPe - Booking Canceled"
               body (str  "<p><strong>" name "</strong>, your client has canceled the booking, please login into your account for more info.</p>")
-              success? (send-email email-id subject body)]
+              email-success? (send-email email-id subject body)]
           (response/response {:status true}))
         (response/response {:status false})))))

@@ -3,6 +3,7 @@
             [buddy.auth :refer [authenticated? throw-unauthorized]]
             [doorpe.backend.util :refer [extract-token-from-request doc-object-id->str]]
             [monger.util :refer [object-id]]
+            [doorpe.backend.util :refer [img->base64]]
             [doorpe.backend.db.query :as query]))
 
 (defn customer-my-profile
@@ -10,18 +11,20 @@
   (let [coll "customers"
         key :_id
         value (object-id customer-id)
-        res (-> (query/retreive-one-by-custom-key-value coll key value)
-                doc-object-id->str)]
+        doc  (-> (query/retreive-one-by-custom-key-value coll key value)
+                 doc-object-id->str)
+        res (img->base64 doc)]
     (response/response res)))
 
-  (defn service-provider-my-profile
-    [service-provider-id]
-    (let [coll "serviceProviders"
-          key :_id
-          value (object-id service-provider-id)
-          res (-> (query/retreive-one-by-custom-key-value coll key value)
-                  doc-object-id->str)]
-      (response/response res)))
+(defn service-provider-my-profile
+  [service-provider-id]
+  (let [coll "serviceProviders"
+        key :_id
+        value (object-id service-provider-id)
+        doc (-> (query/retreive-one-by-custom-key-value coll key value)
+                doc-object-id->str)
+        res (img->base64 doc)]
+    (response/response res)))
 
 (defn my-profile
   [req]

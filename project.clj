@@ -16,14 +16,15 @@
                  [clj-time "0.15.2"]
                  [tick "0.4.26-alpha"]
 
-                 ;;[ring/ring-defaults "0.3.2"]
+                ;;  [ring/ring-defaults "0.3.2"]
+                ;;  [org.clojure/data.codec "0.1.1"]
+
                  [crypto-random "1.2.0"]
                  [buddy/buddy-core "1.6.0"]
                  [buddy/buddy-auth "2.2.0"]
                  [buddy/buddy-hashers "1.4.0"]
                  [buddy/buddy-sign "3.1.0"]
-                 [com.draines/postal "2.0.3"]
-                 [org.clojure/data.codec "0.1.1"]]
+                 [com.draines/postal "2.0.3"]]
   :main ^:skip-aot doorpe.backend.server.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all
