@@ -30,7 +30,7 @@
              :longitude longitude
              :status status
              :img service-provider-img}
-        res (img->base64 doc)]
+        res (img->base64 :img doc)]
     res))
 
 (defn show-customer-my-bookings
@@ -74,7 +74,7 @@
              :longitude longitude
              :status status
              :img customer-img}
-        res (img->base64 doc)]
+        res (img->base64 :img doc)]
     res))
 
 (defn show-service-provider-my-bookings

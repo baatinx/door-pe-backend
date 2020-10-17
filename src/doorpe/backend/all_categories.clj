@@ -6,6 +6,6 @@
 (defn all-categories
   [req]
   (let [coll "categories"
-        categories (pmap img->base64
+        categories (pmap #(img->base64 :img %)
                          (query/retreive-coll coll))]
     (response/response categories)))

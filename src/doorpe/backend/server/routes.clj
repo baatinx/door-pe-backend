@@ -1,5 +1,5 @@
 (ns doorpe.backend.server.routes
-  (:require [compojure.core :refer [defroutes context GET POST PUT PATCH]]
+  (:require [compojure.core :refer [defroutes context GET POST PUT PATCH DELETE]]
             [compojure.route :as route]
             [ring.middleware.cors :refer [wrap-cors]]
             [ring.middleware.params :refer [wrap-params]]
@@ -31,7 +31,8 @@
 
             [doorpe.backend.admin-add :refer [admin-add]]
             [doorpe.backend.admin-edit :refer [admin-edit]]
-            [clojure.string :as string]))
+            [doorpe.backend.all-service-requests :refer [all-service-requests]]
+            [doorpe.backend.admin-service-requests :refer [admin-service-requests]]))
 
 (defroutes app-routes
   (context "/" []
@@ -57,7 +58,9 @@
     (POST "/update-my-profile" [] update-my-profile)
 
     (POST "/admin-add/:add-what" [] admin-add)
-    (POST "/admin-edit/:edit-what" [] admin-edit))
+    (POST "/admin-edit/:edit-what" [] admin-edit)
+    (GET "/all-service-requests" [] all-service-requests)
+    (GET "/admin-service-requests" [] admin-service-requests))
   (route/not-found "page not found"))
 
 (def app

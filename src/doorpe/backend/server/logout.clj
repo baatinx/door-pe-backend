@@ -11,7 +11,7 @@
     (throw-unauthorized)
     (let [token (extract-token-from-request req)
           coll "authTokens"
-          logout? (and token (command/delete-all-by-key-value coll :token token))]
+          logout? (and token (command/remove-by-key-value coll :token token))]
       (if logout?
         (response/response {:logout true})
         (response/response {:logout false})))))

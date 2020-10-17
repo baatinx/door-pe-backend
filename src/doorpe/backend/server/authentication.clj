@@ -53,13 +53,12 @@
   []
   (time/+
    (time/now)
-;    (time/new-duration 240 :minutes)))
-   (time/new-duration 24000 :minutes)))
+   (time/new-duration 240 :minutes)))
 
 (defn create-auth-token!
   [user-id user-type]
   (let [coll "authTokens"
-        reset-user-tokens? (command/delete-all-by-key-value coll :user-id user-id)
+        reset-user-tokens? (command/remove-by-key-value coll :user-id user-id)
         token (base64 32)
         id (object-id)
         doc {:_id id

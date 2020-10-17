@@ -35,6 +35,6 @@
                          object-id)
         service-providers (query/retreive-all-by-custom-key-value coll key service-id)
         res (vec (pmap #(get-required-service-only service-id %) service-providers))
-        img->base64-res (pmap img->base64
+        img->base64-res (pmap #(img->base64 :img %)
                               res)]
     (response/response img->base64-res)))

@@ -12,6 +12,6 @@
                           :params
                           :category-id
                           object-id)
-        services (pmap img->base64
+        services (pmap #(img->base64 :img %)
                        (query/retreive-all-by-custom-key-value coll key category-id))]
     (response/response services)))

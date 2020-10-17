@@ -13,7 +13,7 @@
         value (object-id customer-id)
         doc  (-> (query/retreive-one-by-custom-key-value coll key value)
                  doc-object-id->str)
-        res (img->base64 doc)]
+        res (img->base64 :img doc)]
     (response/response res)))
 
 (defn service-provider-my-profile
@@ -23,7 +23,7 @@
         value (object-id service-provider-id)
         doc (-> (query/retreive-one-by-custom-key-value coll key value)
                 doc-object-id->str)
-        res (img->base64 doc)]
+        res (img->base64 :img doc)]
     (response/response res)))
 
 (defn my-profile

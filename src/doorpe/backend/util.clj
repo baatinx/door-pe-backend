@@ -89,10 +89,10 @@
        (.encodeToString (java.util.Base64/getEncoder))))
 
 (defn img->base64
-  [doc]
-  (let [file-name (:img doc)
+  [img-key doc]
+  (let [file-name (img-key doc)
         file-extension (and file-name (last (string/split file-name #"\.")))
         file (and file-name (io/resource (str "img/" file-name)))
         base64-str (and file (convert-image-from-filesystem file))
         src (format "data:image/%s;base64,%s" file-extension base64-str)]
-    (assoc doc :img src)))
+    (assoc doc img-key src)))

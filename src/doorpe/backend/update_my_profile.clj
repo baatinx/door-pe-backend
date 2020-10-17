@@ -9,8 +9,7 @@
 
 (defn update-customer-profile
   [customer-id {:keys [name email age gender district address landmark pin-code latitude longitude]}]
-  (let [id (object-id customer-id)
-        coll "customers"
+  (let [coll "customers"
         doc {$set {:name name
                    :email email
                    :age (str->int age)
@@ -21,13 +20,12 @@
                    :pin-code (str->int pin-code)
                    :latitude latitude
                    :longitude longitude}}]
-    (command/update-doc-by-id coll id doc)
+    (command/update-by-id coll customer-id doc)
     (response/response {:status true})))
 
 (defn update-service-provider-profile
   [service-provider-id {:keys [name email age gender district pin-code latitude longitude]}]
-  (let [id (object-id service-provider-id)
-        coll "serviceProviders"
+  (let [coll "serviceProviders"
         doc {$set {:name name
                    :email email
                    :age (str->int age)
@@ -36,7 +34,7 @@
                    :pin-code (str->int pin-code)
                    :latitude latitude
                    :longitude longitude}}]
-    (command/update-doc-by-id coll id doc)
+    (command/update-by-id coll service-provider-id doc)
     (response/response {:status true})))
 
 (defn update-my-profile
