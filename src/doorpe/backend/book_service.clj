@@ -1,4 +1,4 @@
-(ns doorpe.backend.book-a-service
+(ns doorpe.backend.book-service
   (:require [ring.util.response :as response]
             [buddy.auth :refer [authenticated? throw-unauthorized]]
             [doorpe.backend.util :refer [str->int extract-token-from-request]]
@@ -9,7 +9,7 @@
             [doorpe.backend.db.query :as query]
             [doorpe.backend.db.ingestion :as insert]))
 
-(defn book-a-service
+(defn book-service
   [req]
   (if-not (authenticated? req)
     throw-unauthorized

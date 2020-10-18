@@ -19,7 +19,7 @@
 
             [doorpe.backend.dashboard :refer [dashboard]]
             [doorpe.backend.my-bookings :refer [my-bookings]]
-            [doorpe.backend.book-a-service :refer [book-a-service]]
+            [doorpe.backend.book-service :refer [book-service]]
             [doorpe.backend.provide-service :refer [provide-service]]
             [doorpe.backend.accept-booking :refer [accept-booking]]
             [doorpe.backend.cancel-booking :refer [cancel-booking]]
@@ -48,7 +48,7 @@
 
     (POST "/register" [] register)
     (POST "/login" [] login)
-    (POST "/book-a-service" [] book-a-service)
+    (POST "/book-service" [] book-service)
     (POST "/provide-service" [] provide-service)
     (POST "/cancel-booking/:booking-id" [] cancel-booking)
     (POST "/accept-booking/:booking-id" [] accept-booking)
