@@ -27,6 +27,7 @@
             [doorpe.backend.my-profile :refer [my-profile]]
             [doorpe.backend.update-my-profile :refer [update-my-profile]]
             [doorpe.backend.server.send-otp :refer [send-otp]]
+            [doorpe.backend.book-complaint :refer [book-complaint]]
             [doorpe.backend.server.logout :refer [logout]]
 
             [doorpe.backend.admin-add :refer [admin-add]]
@@ -54,6 +55,7 @@
     (POST "/accept-booking/:booking-id" [] accept-booking)
     (POST "/reject-booking/:booking-id" [] reject-booking)
     (POST "/logout" [] logout)
+    (POST "/book-complaint" [] book-complaint)
 
     (POST "/update-my-profile" [] update-my-profile)
 
