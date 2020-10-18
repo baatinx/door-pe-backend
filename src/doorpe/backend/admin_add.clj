@@ -21,7 +21,7 @@
       (response/response {:insert-status true})
       (response/response {:insert-status false}))))
 
-(defn add-service
+(defn provide-service
   [{:keys [name category-id charge-type critical-service description my-file]}]
   (let [id (object-id)
         coll "services"
@@ -49,4 +49,4 @@
           add-what (:add-what params)]
       (cond
         (= "category" add-what) (add-category params)
-        (= "service" add-what) (add-service params)))))
+        (= "service" add-what) (provide-service params)))))
