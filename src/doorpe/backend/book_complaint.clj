@@ -17,14 +17,20 @@
           user-id (:user-id res)
           user-type (:user-type res)
           service-id (object-id (:service-id params))
+          email (:email params)
+          user-name (:user-name params)
           description (:description params)
           id (object-id)
 
           doc {:_id id
                :user-id user-id
+               :user-name user-name
                :user-type user-type
                :service-id service-id
-               :description description}
+               :email email
+               :description description
+               :addressed false}
+
           res (insert/doc "complaints" doc)]
       (if res
         (response/response {:status true})

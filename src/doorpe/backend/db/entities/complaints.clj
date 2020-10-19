@@ -3,8 +3,9 @@
 
 (def entity-name "complaints")
 
-(def entity-vec [{:_id (object-id )
-                  :customer-id (object-id "5f48ab6b799d90710eaea366")
-                  :category-id (object-id "5f48ab6b799d90710eaea311")
-                  :complaint "I recently......"
+(def entity-vec [{:_id (object-id)
+                  :user-id (object-id "5f48ab6b799d90710eaea366")
+                  :user-type "customer"
+                  :email "email"
+                  :description "I recently......"
                   :addressed false}])

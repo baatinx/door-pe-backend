@@ -33,7 +33,9 @@
             [doorpe.backend.admin-add :refer [admin-add]]
             [doorpe.backend.admin-edit :refer [admin-edit]]
             [doorpe.backend.all-service-requests :refer [all-service-requests]]
-            [doorpe.backend.admin-service-requests :refer [admin-service-requests]]))
+            [doorpe.backend.admin-service-requests :refer [admin-service-requests]]
+            [doorpe.backend.check-complaints :refer [check-complaints]]
+            [doorpe.backend.complaint-reply :refer [complaint-reply]]))
 
 (defroutes app-routes
   (context "/" []
@@ -61,8 +63,10 @@
 
     (POST "/admin-add/:add-what" [] admin-add)
     (POST "/admin-edit/:edit-what" [] admin-edit)
+    (POST "/complaint-reply" [] complaint-reply)
     (GET "/all-service-requests" [] all-service-requests)
-    (GET "/admin-service-requests" [] admin-service-requests))
+    (GET "/admin-service-requests" [] admin-service-requests)
+    (GET "/check-complaints" [] check-complaints))
   (route/not-found "page not found"))
 
 (def app
