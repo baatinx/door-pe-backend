@@ -28,45 +28,55 @@
             [doorpe.backend.update-my-profile :refer [update-my-profile]]
             [doorpe.backend.server.send-otp :refer [send-otp]]
             [doorpe.backend.book-complaint :refer [book-complaint]]
+            [doorpe.backend.pay-dues :refer [pay-dues]]
             [doorpe.backend.server.logout :refer [logout]]
 
             [doorpe.backend.admin-add :refer [admin-add]]
             [doorpe.backend.admin-edit :refer [admin-edit]]
             [doorpe.backend.all-service-requests :refer [all-service-requests]]
-            [doorpe.backend.admin-service-requests :refer [admin-service-requests]]
+            [doorpe.backend.approve-service-request :refer [approve-service-request]]
+            [doorpe.backend.reject-service-request :refer [reject-service-request]]
             [doorpe.backend.check-complaints :refer [check-complaints]]
             [doorpe.backend.complaint-reply :refer [complaint-reply]]))
 
 (defroutes app-routes
   (context "/" []
+    ;; public
     (GET "/" [] home-page)
-    (GET "/send-otp/:contact/:otp-method" [] send-otp)
-    (GET "/dashboard" [] dashboard)
-    (GET "/my-bookings" [] my-bookings)
     (GET "/all-categories" [] all-categories)
     (GET "/all-services" [] all-services)
     (GET "/all-services-by-category-id/:category-id" [] all-services-by-category-id)
     (GET "/all-service-providers-by-service-id/:service-id" [] all-service-providers-by-service-id)
-    (GET "/my-profile" [] my-profile)
-
+    (GET "/send-otp/:contact/:otp-method" [] send-otp)
     (POST "/register" [] register)
     (POST "/login" [] login)
+
+    ;; customer
     (POST "/book-service" [] book-service)
-    (POST "/provide-service" [] provide-service)
     (POST "/cancel-booking/:booking-id" [] cancel-booking)
+
+    ;; service-provider
     (POST "/accept-booking/:booking-id" [] accept-booking)
     (POST "/reject-booking/:booking-id" [] reject-booking)
-    (POST "/logout" [] logout)
-    (POST "/book-complaint" [] book-complaint)
+    (POST "/provide-service" [] provide-service)
+    (POST "/pay-dues" [] pay-dues)
 
+    ;; shared
+    (GET "/dashboard" [] dashboard)
+    (GET "/my-bookings" [] my-bookings)
+    (GET "/my-profile" [] my-profile)
     (POST "/update-my-profile" [] update-my-profile)
+    (POST "/book-complaint" [] book-complaint)
+    (POST "/logout" [] logout)
 
-    (POST "/admin-add/:add-what" [] admin-add)
-    (POST "/admin-edit/:edit-what" [] admin-edit)
-    (POST "/complaint-reply" [] complaint-reply)
+    ;; admin
     (GET "/all-service-requests" [] all-service-requests)
-    (GET "/admin-service-requests" [] admin-service-requests)
-    (GET "/check-complaints" [] check-complaints))
+    (GET "/approve-service-request" [] approve-service-request)
+    (GET "/reject-service-request" [] reject-service-request)
+    (GET "/check-complaints" [] check-complaints)
+    (POST "/admin-edit/:edit-what" [] admin-edit)
+    (POST "/admin-add/:add-what" [] admin-add)
+    (POST "/complaint-reply" [] complaint-reply))
   (route/not-found "page not found"))
 
 (def app

@@ -70,3 +70,11 @@
       (->> (mc/find-maps db coll ref)
            docs-object-id->str)
       nil)))
+
+(defn count-by-custom-ref
+  [coll ref]
+  (let [db db-ref]
+    (if (and (valid-coll-name? coll)
+             (exists-and-not-empty? db coll))
+      (->> (mc/count db coll ref))
+      nil)))

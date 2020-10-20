@@ -12,7 +12,6 @@
 
 (defn complaint-reply
   [req]
-  (println req)
   (if-not (authenticated? req)
     throw-unauthorized
     (let [token (extract-token-from-request req)

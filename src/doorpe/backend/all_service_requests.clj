@@ -9,7 +9,7 @@
   [req]
   (if-not (authenticated? req)
     (throw-unauthorized)
-    (let [coll "requestsForCertifiedServices"
+    (let [coll "serviceRequests"
           service-requests (-> (query/retreive-coll coll)
                                (docs-custom-object-id->str :service-provider-id))
 

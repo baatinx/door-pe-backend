@@ -11,7 +11,7 @@
 
 (defn register-certified-service-for-approval
   [service-provider-id user-type service-info]
-  (let [coll "requestsForCertifiedServices"
+  (let [coll "serviceRequests"
         id (object-id)
         doc {:_id id
              :service-provider-id (object-id service-provider-id)

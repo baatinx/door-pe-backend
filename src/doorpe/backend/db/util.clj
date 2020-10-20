@@ -27,3 +27,7 @@
                                  :service-provider-id
                                  str)]
     (query/retreive-by-id "serviceProviders" service-provider-id)))
+
+(defn charges-per-booking
+  []
+  30)
