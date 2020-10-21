@@ -1,11 +1,10 @@
 (ns doorpe.backend.my-bookings
   (:require [ring.util.response :as response]
             [buddy.auth :refer [authenticated? throw-unauthorized]]
-            [doorpe.backend.util :refer [extract-token-from-request docs-object-id->str docs-custom-object-id->str]]
+            [doorpe.backend.util :refer [extract-token-from-request docs-object-id->str docs-custom-object-id->str img->base64]]
             [monger.util :refer [object-id]]
-            [doorpe.backend.util :refer [img->base64]]
+            [doorpe.backend.db.util :refer [token->token-details]]
             [monger.operators :refer [$or]]
-            [tick.core :as time]
             [doorpe.backend.db.query :as query]))
 
 (defn transform-booking-data-for-customer
@@ -102,10 +101,7 @@
   (if-not (authenticated? req)
     throw-unauthorized
     (let [token (extract-token-from-request req)
-          coll "authTokens"
-          res (-> (query/retreive-one-by-custom-key-value coll :token token))
-          user-id (:user-id res)
-          user-type (:user-type res)]
+          {user-id :user-id user-type :user-type} (token->token-details token)]
       (cond
         (= "customer" user-type) (show-customer-my-bookings user-id)
         (= "service-provider" user-type) (show-service-provider-my-bookings user-id)))))

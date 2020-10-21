@@ -2,13 +2,11 @@
   (:require [ring.util.response :as response]
             [buddy.auth :refer [authenticated? throw-unauthorized]]
             [doorpe.backend.util :refer [extract-token-from-request]]
-            [doorpe.backend.db.util :refer [token->token-details]]
+            [doorpe.backend.db.util :refer [token->token-details  booking-id->customer-details]]
             [tick.core :as time]
             [monger.util :refer [object-id]]
             [monger.operators :refer [$set]]
             [doorpe.backend.server.send-email :refer [send-email]]
-            [doorpe.backend.db.util :refer [booking-id->customer-details]]
-            [doorpe.backend.db.query :as query]
             [doorpe.backend.db.command :as command]))
 
 (defn reject-booking

@@ -29,6 +29,7 @@
             [doorpe.backend.server.send-otp :refer [send-otp]]
             [doorpe.backend.book-complaint :refer [book-complaint]]
             [doorpe.backend.pay-dues :refer [pay-dues]]
+            [doorpe.backend.pending-dues :refer [pending-dues]]
             [doorpe.backend.server.logout :refer [logout]]
 
             [doorpe.backend.admin-add :refer [admin-add]]
@@ -56,6 +57,7 @@
     (POST "/cancel-booking/:booking-id" [] cancel-booking)
 
     ;; service-provider
+    (GET "/pending-dues" [] pending-dues)
     (POST "/accept-booking/:booking-id" [] accept-booking)
     (POST "/reject-booking/:booking-id" [] reject-booking)
     (POST "/provide-service" [] provide-service)

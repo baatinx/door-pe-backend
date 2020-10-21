@@ -2,8 +2,8 @@
   (:require [ring.util.response :as response]
             [buddy.auth :refer [authenticated? throw-unauthorized]]
             [doorpe.backend.util :refer [extract-token-from-request]]
+            [doorpe.backend.db.util :refer [token->token-details]]
             [monger.util :refer [object-id]]
-            [doorpe.backend.db.query :as query]
             [doorpe.backend.db.ingestion :as insert]))
 
 (defn book-complaint
@@ -12,10 +12,7 @@
     throw-unauthorized
     (let [token (extract-token-from-request req)
           params (:params req)
-          coll "authTokens"
-          res (-> (query/retreive-one-by-custom-key-value coll :token token))
-          user-id (:user-id res)
-          user-type (:user-type res)
+          {user-id :user-id user-type :user-type} (token->token-details token)
           service-id (object-id (:service-id params))
           email (:email params)
           user-name (:user-name params)
@@ -23,7 +20,7 @@
           id (object-id)
 
           doc {:_id id
-               :user-id user-id
+               :user-id (object-id user-id)
                :user-name user-name
                :user-type user-type
                :service-id service-id

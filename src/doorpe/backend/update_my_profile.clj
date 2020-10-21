@@ -1,10 +1,10 @@
 (ns doorpe.backend.update-my-profile
   (:require [ring.util.response :as response]
             [buddy.auth :refer [authenticated? throw-unauthorized]]
-            [doorpe.backend.util :refer [extract-token-from-request doc-object-id->str str->int]]
+            [doorpe.backend.util :refer [extract-token-from-request str->int]]
+            [doorpe.backend.db.util :refer [token->token-details]]
             [monger.util :refer [object-id]]
             [monger.operators :refer [$set]]
-            [doorpe.backend.db.query :as query]
             [doorpe.backend.db.command :as command]))
 
 (defn update-customer-profile
@@ -43,10 +43,7 @@
     throw-unauthorized
     (let [token (extract-token-from-request req)
           params (:params req)
-          coll "authTokens"
-          res (-> (query/retreive-one-by-custom-key-value coll :token token))
-          user-id (:user-id res)
-          user-type (:user-type res)]
+          {user-id :user-id user-type :user-type} (token->token-details token)]
       (cond
         (= "customer" user-type) (update-customer-profile user-id params)
         (= "service-provider" user-type) (update-service-provider-profile user-id params)))))
