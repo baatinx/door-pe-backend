@@ -1,7 +1,7 @@
 (ns doorpe.backend.my-bookings
   (:require [ring.util.response :as response]
             [buddy.auth :refer [authenticated? throw-unauthorized]]
-            [doorpe.backend.util :refer [extract-token-from-request docs-object-id->str docs-custom-object-id->str img->base64]]
+            [doorpe.backend.util :refer [extract-token-from-request docs-object-id->str docs-custom-object-id->str img->base64 simple-date-format simple-time-format]]
             [monger.util :refer [object-id]]
             [doorpe.backend.db.util :refer [token->token-details]]
             [monger.operators :refer [$or]]
@@ -22,9 +22,9 @@
              :service-provider-name service-provider-name
              :service-provider-address service-provider-address
              :service-name service-name
-             :booking-on (str booking-on)
-             :service-on (str service-on)
-             :service-time (str service-time)
+             :booking-on (simple-date-format booking-on)
+             :service-on (simple-date-format service-on)
+             :service-time (simple-time-format service-time)
              :latitude latitude
              :longitude longitude
              :status status
@@ -66,9 +66,9 @@
              :customer-name customer-name
              :customer-address customer-address
              :service-name service-name
-             :booking-on (str booking-on)
-             :service-on (str service-on)
-             :service-time (str service-time)
+             :booking-on (simple-date-format booking-on)
+             :service-on (simple-date-format service-on)
+             :service-time (simple-time-format service-time)
              :latitude latitude
              :longitude longitude
              :status status

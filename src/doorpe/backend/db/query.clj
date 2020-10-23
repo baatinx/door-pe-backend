@@ -76,5 +76,5 @@
   (let [db db-ref]
     (if (and (valid-coll-name? coll)
              (exists-and-not-empty? db coll))
-      (->> (mc/count db coll ref))
-      nil)))
+      (mc/count db coll ref)
+      0)))

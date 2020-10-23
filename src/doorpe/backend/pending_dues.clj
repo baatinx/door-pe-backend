@@ -18,18 +18,18 @@
           total-bookings-count (and (= "service-provider" user-type)
                                     (query/count-by-custom-ref "bookings" ref))
           charges-per-booking (charges-per-booking)
-
-          total-amount-due (* total-bookings-count charges-per-booking)
-
+          total-amount-due (and total-bookings-count
+                                charges-per-booking
+                                (* total-bookings-count charges-per-booking))
           payments (and
                     pos?
                     (query/retreive-all-by-custom-key-value "payments" :service-provider-id (object-id user-id)))
-
-          total-amount-paid (and payments
-                                 (reduce (fn [acc payment]
-                                           (+ acc (:amount payment)))
-                                         0
-                                         payments))]
+          total-amount-paid (if payments
+                              (reduce (fn [acc payment]
+                                        (+ acc (:amount payment)))
+                                      0
+                                      payments)
+                              0)]
       (response/response {:total-bookings-count total-bookings-count
                           :charges-per-booking charges-per-booking
                           :total-amount-due total-amount-due

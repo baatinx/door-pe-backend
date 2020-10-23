@@ -69,7 +69,6 @@
     (if (insert/doc coll doc)
       token
       false)))
-; (create-auth-token! "5f70b82dc6da85754f72b68d" "customer")
 
 (defn token-expired?
   [exp]
@@ -88,6 +87,5 @@
              (not (token-expired? exp)))
       user-id
       false)))
-; (authenticate-token 1 "zASce+UVDhIovpZLbkHN+6Xpzre8Rrnv3mGVxIYy+qo=")
 
 (def auth-backend (token-backend {:authfn authenticate-token}))

@@ -96,3 +96,11 @@
         base64-str (and file (convert-image-from-filesystem file))
         src (format "data:image/%s;base64,%s" file-extension base64-str)]
     (assoc doc img-key src)))
+
+(defn simple-date-format
+  [d]
+  (.format (java.text.SimpleDateFormat. "MM/dd/yyyy") d))
+
+(defn simple-time-format
+  [t]
+  (.format (java.text.SimpleDateFormat. "h:mma") t))
