@@ -21,6 +21,7 @@
             [doorpe.backend.my-bookings :refer [my-bookings]]
             [doorpe.backend.book-service :refer [book-service]]
             [doorpe.backend.provide-service :refer [provide-service]]
+            [doorpe.backend.provide-service-by-category-id :refer [provide-service-by-category-id]]
             [doorpe.backend.accept-booking :refer [accept-booking]]
             [doorpe.backend.cancel-booking :refer [cancel-booking]]
             [doorpe.backend.reject-booking :refer [reject-booking]]
@@ -62,6 +63,7 @@
     (POST "/reject-booking/:booking-id" [] reject-booking)
     (POST "/provide-service" [] provide-service)
     (POST "/pay-dues" [] pay-dues)
+    (GET "/provide-service-by-category-id/:category-id" [] provide-service-by-category-id)
 
     ;; shared
     (GET "/dashboard" [] dashboard)
