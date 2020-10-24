@@ -15,7 +15,7 @@
     throw-unauthorized
     (let [token (extract-token-from-request req)
           {user-id :user-id user-type :user-type} (token->token-details token)
-          {:keys [service-provider-id service-id service-on service-time service-charges charges latitude longitude]} (:params req)
+          {:keys [service-provider-id service-id service-on service-time service-charges charges current-latitude current-longitude]} (:params req)
           coll "bookings"
           id (object-id)
           status "pending"
@@ -29,10 +29,19 @@
                :service-time (time/time service-time)
                :service-charges (str->int service-charges)
                :charges (str->int charges)
-               :status status
-               :latitude latitude
-               :longitude longitude}
-          res (and (= "customer" user-type) (insert/doc coll doc))]
+               :status status}
+
+          use-home-coords? (not
+                            (and current-latitude current-longitude))
+          {home-latitude :latitude home-longitude :longitude} (and use-home-coords?
+                                                                   (query/retreive-by-id "customers" user-id))
+
+          doc-with-coords (if use-home-coords?
+                            (into doc {:latitude home-latitude
+                                       :longitude home-longitude})
+                            (into doc {:latitude current-latitude
+                                       :longitude current-longitude}))
+          res (and (= "customer" user-type) (insert/doc coll doc-with-coords))]
       (if res
         (let [coll "serviceProviders"
               service-provider-details (query/retreive-by-id coll service-provider-id)

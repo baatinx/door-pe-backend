@@ -3,6 +3,7 @@
             [monger.util :refer [get-id]]
             [clojure.edn :as edn]
             [clojure.java.io :as io]
+            [tick.core :as time]
             [clojure.string :as string])
   (:import [org.bson.types ObjectId]))
 
@@ -103,4 +104,9 @@
 
 (defn simple-time-format
   [t]
-  (.format (java.text.SimpleDateFormat. "h:mma") t))
+  (let [instant-time (time/instant t)
+        time-with-offset (-> instant-time
+                             (time/- (time/new-duration 5 :hours))
+                             (time/- (time/new-duration 30 :minutes))
+                             time/inst)]
+    (.format (java.text.SimpleDateFormat. "h:mma") time-with-offset)))
