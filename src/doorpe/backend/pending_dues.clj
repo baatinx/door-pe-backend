@@ -18,8 +18,8 @@
           total-bookings-count (and (= "service-provider" user-type)
                                     (query/count-by-custom-ref "bookings" ref))
           charges-per-booking (charges-per-booking)
-          total-amount-due (and total-bookings-count
-                                charges-per-booking
+          total-amount-due (and (pos? total-bookings-count)
+                                (pos? charges-per-booking)
                                 (* total-bookings-count charges-per-booking))
           payments (and
                     pos?

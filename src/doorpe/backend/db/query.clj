@@ -78,3 +78,12 @@
              (exists-and-not-empty? db coll))
       (mc/count db coll ref)
       0)))
+
+(defn count-by-custom-key-value
+  [coll key value]
+  (let [db db-ref
+        ref {key value}]
+    (if (and (valid-coll-name? coll)
+             (exists-and-not-empty? db coll))
+      (mc/count db coll ref)
+      0)))

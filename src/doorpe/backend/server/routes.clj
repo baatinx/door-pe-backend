@@ -39,7 +39,8 @@
             [doorpe.backend.approve-service-request :refer [approve-service-request]]
             [doorpe.backend.reject-service-request :refer [reject-service-request]]
             [doorpe.backend.check-complaints :refer [check-complaints]]
-            [doorpe.backend.complaint-reply :refer [complaint-reply]]))
+            [doorpe.backend.complaint-reply :refer [complaint-reply]]
+            [doorpe.backend.revenue-generated :refer [revenue-generated]]))
 
 (defroutes app-routes
   (context "/" []
@@ -78,9 +79,10 @@
     (GET "/approve-service-request" [] approve-service-request)
     (GET "/reject-service-request" [] reject-service-request)
     (GET "/check-complaints" [] check-complaints)
+    (GET "/revenue-generated" [] revenue-generated))
     (POST "/admin-edit/:edit-what" [] admin-edit)
     (POST "/admin-add/:add-what" [] admin-add)
-    (POST "/complaint-reply" [] complaint-reply))
+    (POST "/complaint-reply" [] complaint-reply)
   (route/not-found "page not found"))
 
 (def app
