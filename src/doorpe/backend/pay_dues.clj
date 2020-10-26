@@ -21,9 +21,9 @@
     throw-unauthorized
     (let [token (extract-token-from-request req)
           {user-id :user-id user-type :user-type} (token->token-details token)
-          amount  (-> req
+          pay-amount  (-> req
                       :params
-                      :amount
+                      :pay-amount
                       str->int)
 
           coll "payments"
@@ -31,10 +31,11 @@
           paid-on (time/today)
 
           {:keys [transaction-id amount-paid payment-status]} (and (= "service-provider" user-type)
-                                                                   (pos? amount)
-                                                                   (payment-gateway amount))
+                                                                   (pos? pay-amount)
+                                                                   (payment-gateway pay-amount))
 
-          doc (and (= true payment-status)
+          doc (and (= pay-amount amount-paid)
+                   (= true payment-status)
                    {:_id id
                     :transaction-id transaction-id
                     :service-provider-id (object-id user-id)

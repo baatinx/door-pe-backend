@@ -1,5 +1,6 @@
-(ns doorpe.backend.home-page)
+(ns doorpe.backend.home-page
+  (:require [ring.util.response :as response]))
 
 (defn home-page
   [req]
-  "this is home page")
+  (response/response "this is home page"))

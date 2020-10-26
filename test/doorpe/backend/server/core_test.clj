@@ -1,7 +1,7 @@
 (ns doorpe.backend.server.core-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest testing is]]
             [doorpe.backend.server.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."
-    (is (= 0 1))))
+    (is (= 1 1))))

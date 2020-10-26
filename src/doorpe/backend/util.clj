@@ -11,12 +11,17 @@
   "Return true if collection exists and is not empty"
   [db coll]
   (and
+   (instance? String coll)
+   (not (empty? coll))
    (mc/exists? db coll)
    (not (mc/empty? db coll))))
 
 (defn valid-hexa-string?
   [s]
-  (org.bson.types.ObjectId/isValid s))
+  (and
+   (instance? String s)
+   (not (empty? s))
+   (org.bson.types.ObjectId/isValid s)))
 
 (defn bson-object-id->str
   ([]
@@ -24,20 +29,26 @@
        .toString))
 
   ([object-id]
-   (.toString object-id)))
+   (and
+    (instance? org.bson.types.ObjectId object-id)
+    (.toString object-id))))
 
 (defn coll-exists?
   [db coll]
-  (mc/exists? db coll))
+  (and
+   (instance? String coll)
+   (not (empty? coll))
+   (mc/exists? db coll)))
 
 (defn doc-object-id->str
   "Accepts a map"
   [doc]
-  (if (contains? doc :_id)
-    (let [id (get-id doc)
-          hexa-string (str id)]
-      (and (valid-hexa-string? hexa-string) (assoc doc :_id hexa-string)))
-    doc))
+  (and
+   (if (contains? doc :_id)
+     (let [id (get-id doc)
+           hexa-string (str id)]
+       (and (valid-hexa-string? hexa-string) (assoc doc :_id hexa-string)))
+     doc)))
 
 (defn docs-object-id->str
   "Accepts a vector of maps"
@@ -48,11 +59,13 @@
 (defn doc-custom-object-id->str
   "Accepts a map"
   [doc key]
-  (if (contains? doc key)
-    (let [id (get doc key)
-          hexa-string (str id)]
-      (and (valid-hexa-string? hexa-string) (assoc doc key hexa-string)))
-    doc))
+  (and
+   (instance? clojure.lang.Keyword key)
+   (if (contains? doc key)
+     (let [id (get doc key)
+           hexa-string (str id)]
+       (and (valid-hexa-string? hexa-string) (assoc doc key hexa-string)))
+     doc)))
 
 (defn docs-custom-object-id->str
   "Accepts a vector of maps"
@@ -63,13 +76,19 @@
 (defn valid-coll-name?
   "mongodb valid coll name, check for name starts with, whether contain symbol.... - pending"
   [coll]
-  (and (instance? String coll)))
+  (and (instance? String coll)
+       (not (empty? coll))))
 
 (defn str->int
   [s]
-  (if (instance? String s)
-    (edn/read-string s)
-    s))
+  (if (instance? java.lang.Long s)
+    s
+    (let [to-int (and (instance? String s)
+                      (not (empty? s))
+                      (edn/read-string s))]
+      (if (instance? java.lang.Long to-int)
+        to-int
+        false))))
 
 (defn extract-token-from-request
   [req]

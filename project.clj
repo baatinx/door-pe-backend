@@ -7,6 +7,7 @@
                  [com.novemberain/monger "3.5.0"]
                  [ring/ring-core "1.8.1"]
                  [ring/ring-jetty-adapter "1.8.1"]
+                 [ring/ring-mock "0.3.2"]
                  [compojure "1.6.2"]
                  [ring-cors "0.1.13"]
                  [metosin/muuntaja "0.6.7"]
