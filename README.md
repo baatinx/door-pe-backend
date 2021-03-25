@@ -72,6 +72,80 @@ Version control: **Git & Github**
 <br/>
 <br/>
 
+
+# Conclusion
+
+* It has been such an exciting and challenging project for all of us ( `Basit Shafi(MCA-17-11)`, `Mahroosha Jalal(MCA-17-14)`, `Afshana Parveen(MCA-17-02)`, `Salfeyah Gull(MCA-17-15)`). **This project gave us a lot of practical knowledge about how to develop a web Application using a functional programming approach**. This project helped us to realize the potential which is present in developing web-based applications like this. It was really fun to work in a team-like environment.
+
+* We developed a web-based application "DoorPe - A Smart Multiple Services Portal" which provides a platform for the customer and the service provider where they can book/provide services, check booking status, Accept/Reject/Cancel their bookings.
+
+* A customer can provide his/her GPS coordinates to the service provider where the service provider has to deliver the service. Users of the system can provide access to his/her account to any third-party application. Notifications will be sent via emails to the users to keep them updated. Both customers and service provider can book their complaints to the admin, the admin's reply will be sent to them via email.
+
+* Talking about the revenue model, a service provider has to pay a fixed amount to us for each accepted booking, which can be paid either online or offline. The service provider can check his pending dues and payments history. Besides this, here are a lot of features that facilitate the bookings. All our five main objectives have been completed. Overall the project can be considered a success.
+
+## Future Scope / Recommendation
+
+The future scope of this project is immense. The use of mobile phones in our daily life for minor things is increasing, This project can be a game-changer in the service booking sector. It is highly useful for all types of customers and service providers in many ways.
+This project "DoorPe" opens many possibilities in the future for better enhancement, such as :
+
+* Integration of Payment Gateway.
+* Implement Cookies (Did not implemented, due to time constraints).
+* Support for Android Environment.
+* An allocation algorithm that will choose the most .appropriate service provider
+* Chat-based communication system.
+* Implement Ratings and reviews system.
+* Support for a notification system.
+* Use of some Google APIs  - Directions API, Geocoding API, Geolocation API, Distance Matrix API.
+* Sorting, filtering the available service providers.
+* Make the application more robust.
+* Build a more user-friendly interface.
+
+## BIBLIOGRAPHY
+##### Books Reffered
+
+[1. Clojure for the Brave and True: Learn the Ultimate Language and Become a Better Programmer - Daniel Higginbotham](https://www.braveclojure.com/)
+
+[2. programming Clojure - Alex Miller, Stuart Halloway, Aaron Bedra](https://pragprog.com/titles/shcloj3/programming-clojure-third-edition/)
+
+[3. The Clojure Workshop: A New, Interactive Approach to Learning Clojure - Joseph Fahey, Scott McCaughie, and Thomas Haratyk](https://www.packtpub.com/product/the-clojure-workshop/9781838825485)
+
+[4. Living Clojure: An Introduction and Training Plan for Developers - Carin Meier](https://www.oreilly.com/library/view/living-clojure/9781491909270/)
+
+[5. Clojure Cookbook: Recipes for Functional Programming - VanderHart and Ryan Neufeld](https://www.oreilly.com/library/view/clojure-cookbook/9781449366384/)
+ 
+##### Sites Referred:
+[1. http://clojuremongodb.info/](http://clojuremongodb.info/)
+
+[2. https://docs.mongodb.com/manual/tutorial/](https://docs.mongodb.com/manual/tutorial/)
+
+[3. https://funcool.github.io/ ](https://funcool.github.io/)
+
+[4.1. http://kendru.github.io/restful-clojure/2014/02/16/writing-a-5.restful-web-service-in-clojure-part-1-setup/](http://kendru.github.io/restful-clojure/2014/02/16/writing-a-5.restful-web-service-in-clojure-part-1-setup/)
+
+[4.2. http://kendru.github.io/restful-clojure/2014/02/19/getting-a-web-server-up-and-running-with-compojure-restful-clojure-part-2/](http://kendru.github.io/restful-clojure/2014/02/19/getting-a-web-server-up-and-running-with-compojure-restful-clojure-part-2/)
+
+[4.3. http://kendru.github.io/restful-clojure/2014/03/01/building-out-the-web-service-restful-clojure-part-3/](http://kendru.github.io/restful-clojure/2014/03/01/building-out-the-web-service-restful-clojure-part-3/)
+
+[4.4. http://kendru.github.io/restful-clojure/2015/03/13/securing-service-restful-clojure-part-4/](http://kendru.github.io/restful-clojure/2015/03/13/securing-service-restful-clojure-part-4/)
+
+[5. http://rundis.github.io/blog/2015/buddy_auth_part1.html](http://rundis.github.io/blog/2015/buddy_auth_part1.html)
+
+[6. http://rundis.github.io/blog/2015/buddy_auth_part2.html](http://rundis.github.io/blog/2015/buddy_auth_part2.html)
+
+[7. http://rundis.github.io/blog/2015/buddy_auth_part3.html](http://rundis.github.io/blog/2015/buddy_auth_part3.html)
+
+[8. http://rundis.github.io/blog/2015/buddy_auth_part4.html](http://rundis.github.io/blog/2015/buddy_auth_part4.html)
+
+[9. https://www.bradcypert.com/using-json-web-tokens-with-clojure/](https://www.bradcypert.com/using-json-web-tokens-with-clojure/)
+
+[10. https://mkyong.com/](https://mkyong.com/)
+
+[11. https://www.tutorialspoint.com/mongodb/index.htm](https://www.tutorialspoint.com/mongodb/index.htm)
+
+[12. https://material-ui.com/](https://material-ui.com/)
+
+[13. https://www.clojure-toolbox.com/ ](https://www.clojure-toolbox.com/)
+
  # Few Snapshots
 
 **User Registration**
@@ -173,76 +247,3 @@ Version control: **Git & Github**
 **Admin Check Revenue Generated**
 
 ![alt Registration](Screenshots/revenue.png)
-
-# Conclusion
-
-* It has been such an exciting and challenging project for all of us ( `Basit Shafi(MCA-17-11)`, `Mahroosha Jalal(MCA-17-14)`, `Afshana Parveen(MCA-17-02)`, `Salfeyah Gull(MCA-17-15)`). **This project gave us a lot of practical knowledge about how to develop a web Application using a functional programming approach**. This project helped us to realize the potential which is present in developing web-based applications like this. It was really fun to work in a team-like environment.
-
-* We developed a web-based application "DoorPe - A Smart Multiple Services Portal" which provides a platform for the customer and the service provider where they can book/provide services, check booking status, Accept/Reject/Cancel their bookings.
-
-* A customer can provide his/her GPS coordinates to the service provider where the service provider has to deliver the service. Users of the system can provide access to his/her account to any third-party application. Notifications will be sent via emails to the users to keep them updated. Both customers and service provider can book their complaints to the admin, the admin's reply will be sent to them via email.
-
-* Talking about the revenue model, a service provider has to pay a fixed amount to us for each accepted booking, which can be paid either online or offline. The service provider can check his pending dues and payments history. Besides this, here are a lot of features that facilitate the bookings. All our five main objectives have been completed. Overall the project can be considered a success.
-
-## Future Scope / Recommendation
-
-The future scope of this project is immense. The use of mobile phones in our daily life for minor things is increasing, This project can be a game-changer in the service booking sector. It is highly useful for all types of customers and service providers in many ways.
-This project "DoorPe" opens many possibilities in the future for better enhancement, such as :
-
-* Integration of Payment Gateway.
-* Implement Cookies (Did not implemented, due to time constraints).
-* Support for Android Environment.
-* An allocation algorithm that will choose the most .appropriate service provider
-* Chat-based communication system.
-* Implement Ratings and reviews system.
-* Support for a notification system.
-* Use of some Google APIs  - Directions API, Geocoding API, Geolocation API, Distance Matrix API.
-* Sorting, filtering the available service providers.
-* Make the application more robust.
-* Build a more user-friendly interface.
-
-## BIBLIOGRAPHY
-##### Books Reffered
-
-[1. Clojure for the Brave and True: Learn the Ultimate Language and Become a Better Programmer - Daniel Higginbotham](https://www.braveclojure.com/)
-
-[2. programming Clojure - Alex Miller, Stuart Halloway, Aaron Bedra](https://pragprog.com/titles/shcloj3/programming-clojure-third-edition/)
-
-[3. The Clojure Workshop: A New, Interactive Approach to Learning Clojure - Joseph Fahey, Scott McCaughie, and Thomas Haratyk](https://www.packtpub.com/product/the-clojure-workshop/9781838825485)
-
-[4. Living Clojure: An Introduction and Training Plan for Developers - Carin Meier](https://www.oreilly.com/library/view/living-clojure/9781491909270/)
-
-[5. Clojure Cookbook: Recipes for Functional Programming - VanderHart and Ryan Neufeld](https://www.oreilly.com/library/view/clojure-cookbook/9781449366384/)
- 
-##### Sites Referred:
-[1. http://clojuremongodb.info/](http://clojuremongodb.info/)
-
-[2. https://docs.mongodb.com/manual/tutorial/](https://docs.mongodb.com/manual/tutorial/)
-
-[3. https://funcool.github.io/ ](https://funcool.github.io/)
-
-[4.1. http://kendru.github.io/restful-clojure/2014/02/16/writing-a-5.restful-web-service-in-clojure-part-1-setup/](http://kendru.github.io/restful-clojure/2014/02/16/writing-a-5.restful-web-service-in-clojure-part-1-setup/)
-
-[4.2. http://kendru.github.io/restful-clojure/2014/02/19/getting-a-web-server-up-and-running-with-compojure-restful-clojure-part-2/](http://kendru.github.io/restful-clojure/2014/02/19/getting-a-web-server-up-and-running-with-compojure-restful-clojure-part-2/)
-
-[4.3. http://kendru.github.io/restful-clojure/2014/03/01/building-out-the-web-service-restful-clojure-part-3/](http://kendru.github.io/restful-clojure/2014/03/01/building-out-the-web-service-restful-clojure-part-3/)
-
-[4.4. http://kendru.github.io/restful-clojure/2015/03/13/securing-service-restful-clojure-part-4/](http://kendru.github.io/restful-clojure/2015/03/13/securing-service-restful-clojure-part-4/)
-
-[5. http://rundis.github.io/blog/2015/buddy_auth_part1.html](http://rundis.github.io/blog/2015/buddy_auth_part1.html)
-
-[6. http://rundis.github.io/blog/2015/buddy_auth_part2.html](http://rundis.github.io/blog/2015/buddy_auth_part2.html)
-
-[7. http://rundis.github.io/blog/2015/buddy_auth_part3.html](http://rundis.github.io/blog/2015/buddy_auth_part3.html)
-
-[8. http://rundis.github.io/blog/2015/buddy_auth_part4.html](http://rundis.github.io/blog/2015/buddy_auth_part4.html)
-
-[9. https://www.bradcypert.com/using-json-web-tokens-with-clojure/](https://www.bradcypert.com/using-json-web-tokens-with-clojure/)
-
-[10. https://mkyong.com/](https://mkyong.com/)
-
-[11. https://www.tutorialspoint.com/mongodb/index.htm](https://www.tutorialspoint.com/mongodb/index.htm)
-
-[12. https://material-ui.com/](https://material-ui.com/)
-
-[13. https://www.clojure-toolbox.com/ ](https://www.clojure-toolbox.com/)
