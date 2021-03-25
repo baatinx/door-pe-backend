@@ -202,7 +202,7 @@ This project "DoorPe" opens many possibilities in the future for better enhancem
 * Build a more user-friendly interface.
 
 ## BIBLIOGRAPHY
-##### Books effered
+##### Books Reffered
 
 [1. Clojure for the Brave and True: Learn the Ultimate Language and Become a Better Programmer - Daniel Higginbotham](https://www.braveclojure.com/)
 
