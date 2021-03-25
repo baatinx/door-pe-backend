@@ -150,7 +150,7 @@ This project "DoorPe" opens many possibilities in the future for better enhancem
 
 **User Registration**
 
-![alt User Registration](Screenshots/complaint-reply.png)
+![alt User Registration](Screenshots/registration.png)
 
 <br/>
 <br/>
