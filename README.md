@@ -1,10 +1,10 @@
 # DoorPe - A Smart Multiple Services Portal
 
-DoorPe is a web portal that facilitates access to variety of **on-demand home services at one place**. It helps customers to hire trusted professionals for their services as per their convenience in an effective and cost effective manner. These services include cleaning, plumbing, carpentry, interior design, wedding photography, yoga training and many more related services.  
+DoorPe is a web portal that facilitates access to a variety of **on-demand home services at one place**. It helps customers to hire trusted professionals for their services at their convenience in an effective and cost-effective manner. These services include cleaning, plumbing, carpentry, interior design, wedding photography, yoga training, and many more related services.  
 
 **Users can access and book a wide range of services through DoorPe**. They can book and subsequently track the status of their bookings, see the earlier work done by the service providers, and rate the provider accordingly.
 
-This platform creates a bridge between professionals and customers. In order to access the application, all the stakeholders need to be registered with the application. There will be a separate registration links for professional and customers for obtaining the necessary registration.  After getting necessary registration, the customers can avail a variety of services provided by professional service providers.  Accordingly services providers can view, accept, and decline the service requests of the customers as per their availability and nature of service requests.
+This platform creates a bridge between professionals and customers. To access the application, all the stakeholders need to be registered with the application. There will be separate registration links for professionals and customers for obtaining the necessary registration.  After getting the necessary registration, the customers can avail a variety of services provided by professional service providers.  Accordingly, service providers can view, accept, and decline the service requests of the customers as per their availability and nature of service requests.
 
 # Goals and Objectives
 
@@ -56,7 +56,7 @@ Build automation tool: **leiningen**
 <br/>
 <br/>
 
-Clojure + Clojurescript development enviroment tool: **Calva**
+Clojure + Clojurescript development environment tool: **Calva**
 
 ![alt Registration](Screenshots/calva.png)
 
@@ -138,7 +138,7 @@ Version control: **Git & Github**
 <br/>
 <br/>
 
-**Service provider Pay Dues / Charges(calling mock api)**
+**Service provider Pay Dues / Charges(calling mock API)**
 
 ![alt Registration](Screenshots/pay-dues.png)
 
@@ -176,37 +176,37 @@ Version control: **Git & Github**
 
 # Conclusion
 
-* It has been such an exciting and challenging project for all of us `Basit Shafi(MCA-17-11)`, `Mahroosha Jalal(MCA-17-14)`, `Afshana Parveen(MCA-17-02)`, `Salfeyah Gull(MCA-17-15)`. **This project gave us a lot of practical knowledge about how to develop a web Application using a functional programming approach**. This project helped us to realize the potential which is present in developing web-based applications like this. It was really fun to work in a team like environment.
+* It has been such an exciting and challenging project for all of us ( `Basit Shafi(MCA-17-11)`, `Mahroosha Jalal(MCA-17-14)`, `Afshana Parveen(MCA-17-02)`, `Salfeyah Gull(MCA-17-15)`). **This project gave us a lot of practical knowledge about how to develop a web Application using a functional programming approach**. This project helped us to realize the potential which is present in developing web-based applications like this. It was really fun to work in a team-like environment.
 
-* We developed a web-based application "DoorPe - A Smart Multiple Services Portal" which provides a platform for the customer and the service provider where they can book/provide services, check booking status, Accept/Reject/Cancel their bookings.
+* We developed a web-based application "DoorPe - A Smart Multiple Services Portal" which provides a platform for the customer and the service provider where they can book/provide services, check booking status, Accept/Reject/Cancel their bookings.
 
-* A customer can provide his/her GPS coordinate to the service provider where the service provider has to deliver the service. Users of the system can provide access to his/her account to any third-party application. Notifications will be sent via emails to the users to keep them updated. Both customer and service provider can book their complaints to admin, the admin's reply will be sent to them via email.
+* A customer can provide his/her GPS coordinates to the service provider where the service provider has to deliver the service. Users of the system can provide access to his/her account to any third-party application. Notifications will be sent via emails to the users to keep them updated. Both customers and service provider can book their complaints to the admin, the admin's reply will be sent to them via email.
 
-* Talking about the revenue model, a service provider has to pay a fixed amount to us for each accepted booking, that can be paid either online or offline. The service provider can check his pending dues and payments history. Besides this, here are a lot of features that facilitate the bookings. All our five main objectives have been successfully completed. Overall the project can be considered a success.
+* Talking about the revenue model, a service provider has to pay a fixed amount to us for each accepted booking, which can be paid either online or offline. The service provider can check his pending dues and payments history. Besides this, here are a lot of features that facilitate the bookings. All our five main objectives have been completed. Overall the project can be considered a success.
 
 ## Future Scope / Recommendation
 
-The future scope of this project is immense. The use of mobile phones in our daily life for minor things is increasing, This project can be a game-changer in service booking sector. It is highly useful for all types of customers and service providers in many ways.
-This project "DoorPe" opens many possibilities in the future for better enhancement, such as :
+The future scope of this project is immense. The use of mobile phones in our daily life for minor things is increasing, This project can be a game-changer in the service booking sector. It is highly useful for all types of customers and service providers in many ways.
+This project "DoorPe" opens many possibilities in the future for better enhancement, such as :
 
 * Integration of Payment Gateway.
-* Implement Cookies (Did't implemented, due to time constraint).
-* Support for Android Environment .
+* Implement Cookies (Did not implemented, due to time constraints).
+* Support for Android Environment.
 * An allocation algorithm that will choose the most .appropriate service provider
 * Chat-based communication system.
 * Implement Ratings and reviews system.
 * Support for a notification system.
-* Use of some Google APIs  - Directions API, Geocoding API, Geolocation API, Distance Matrix API.
+* Use of some Google APIs  - Directions API, Geocoding API, Geolocation API, Distance Matrix API.
 * Sorting, filtering the available service providers.
 * Make the application more robust.
-* Build more user-friendly interface.
+* Build a more user-friendly interface.
 
 ## BIBLIOGRAPHY
 ##### Books effered
 
 [1. Clojure for the Brave and True: Learn the Ultimate Language and Become a Better Programmer - Daniel Higginbotham](https://www.braveclojure.com/)
 
-[2. programming clojure - Alex Miller, Stuart Halloway, Aaron Bedra](https://pragprog.com/titles/shcloj3/programming-clojure-third-edition/)
+[2. programming Clojure - Alex Miller, Stuart Halloway, Aaron Bedra](https://pragprog.com/titles/shcloj3/programming-clojure-third-edition/)
 
 [3. The Clojure Workshop: A New, Interactive Approach to Learning Clojure - Joseph Fahey, Scott McCaughie, and Thomas Haratyk](https://www.packtpub.com/product/the-clojure-workshop/9781838825485)
 
