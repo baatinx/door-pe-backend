@@ -146,6 +146,16 @@ This project "DoorPe" opens many possibilities in the future for better enhancem
 
 [13. https://www.clojure-toolbox.com/ ](https://www.clojure-toolbox.com/)
 
+
+# Installation
+
+**Frontend**
+1. Install dependencies `$ npm install`
+2. Run frontend server `$ npx shadow-cljs watch frontend` (for more details [click here](https://github.com/thheller/shadow-cljs))
+
+**Backend**
+1. Run backend server `$ lein run` (for more details [click here](https://github.com/technomancy/leiningen)) 
+
  # Few Snapshots
 
 **User Registration**
