@@ -105,7 +105,7 @@ This project "DoorPe" opens many possibilities in the future for better enhancem
 
 [1. Clojure for the Brave and True: Learn the Ultimate Language and Become a Better Programmer - Daniel Higginbotham](https://www.braveclojure.com/)
 
-[2. programming Clojure - Alex Miller, Stuart Halloway, Aaron Bedra](https://pragprog.com/titles/shcloj3/programming-clojure-third-edition/)
+[2. Programming Clojure - Alex Miller, Stuart Halloway, Aaron Bedra](https://pragprog.com/titles/shcloj3/programming-clojure-third-edition/)
 
 [3. The Clojure Workshop: A New, Interactive Approach to Learning Clojure - Joseph Fahey, Scott McCaughie, and Thomas Haratyk](https://www.packtpub.com/product/the-clojure-workshop/9781838825485)
 
